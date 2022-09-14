@@ -5,6 +5,7 @@
 
 import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
+import DashboardLayout from '../components/DashboardLayout';
 import '../styles/globals.css'
 //  List pages you want to be publicly accessible, or leave empty if
 //  every page requires authentication. Use this naming strategy:
@@ -30,7 +31,9 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <>
           <SignedIn>
-            <Component {...pageProps} />
+            <DashboardLayout>
+              <Component {...pageProps} />
+            </DashboardLayout>
           </SignedIn>
           <SignedOut>
             <RedirectToSignIn />
