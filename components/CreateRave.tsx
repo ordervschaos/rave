@@ -5,11 +5,10 @@ import { createClient } from "@supabase/supabase-js";
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Combobox } from '@headlessui/react'
 
-const people = [
-  { id: 1, name: 'Video' },
-  { id: 2, name: 'Movie' },
-  { id: 3, name: 'Book' },
-  // More users...
+const rave_types = [
+  'Video',
+  'Movie',
+  'Book'
 ]
 const supabaseClient = async (supabaseAccessToken) => {
   const supabase = createClient(
@@ -28,7 +27,7 @@ const supabaseClient = async (supabaseAccessToken) => {
 
 
 
-export default function AddRaveForm() {
+export default function CreateRave() {
   const { session } = useSession();
 
   const [newRaveItem, setNewRaveItem] = useState("test");
@@ -40,18 +39,16 @@ export default function AddRaveForm() {
 
   const filteredTypes =
     query === ''
-      ? people
-      : people.filter((type) => {
-        return type.name.toLowerCase().includes(query.toLowerCase())
+      ? rave_types
+      : rave_types.filter((type) => {
+        return type.toLowerCase().includes(query.toLowerCase())
       })
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
   const handleSubmit = async (e) => {
-    console.log("clicked")
     e.preventDefault();
     if (newRaveItem === "" || newRaveReview === "") {
-      console.log("empty");
       return;
     }
 
@@ -95,7 +92,7 @@ export default function AddRaveForm() {
                         <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                           {filteredTypes.map((type) => (
                             <Combobox.Option
-                              key={type.id}
+                              key={type}
                               value={type}
                               className={({ active }) =>
                                 classNames(
@@ -106,7 +103,7 @@ export default function AddRaveForm() {
                             >
                               {({ active, selected }) => (
                                 <>
-                                  <span className={classNames('block truncate', selected && 'font-semibold')}>{type.name}</span>
+                                  <span className={classNames('block truncate', selected && 'font-semibold')}>{type}</span>
 
                                   {selected && (
                                     <span
