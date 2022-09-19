@@ -31,7 +31,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function DashboardLayout({ children }) {
+export default function Layout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (

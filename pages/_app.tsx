@@ -5,7 +5,7 @@
 
 import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
-import DashboardLayout from '../components/DashboardLayout';
+import Layout from '../components/Layout';
 import '../styles/globals.css'
 //  List pages you want to be publicly accessible, or leave empty if
 //  every page requires authentication. Use this naming strategy:
@@ -16,6 +16,10 @@ import '../styles/globals.css'
 const publicPages = [];
 
 function MyApp({ Component, pageProps }) {
+
+  const getLayout = Component.getLayout || ((page) => page)
+
+  
   // Get the pathname
   const { pathname } = useRouter();
 
@@ -24,16 +28,14 @@ function MyApp({ Component, pageProps }) {
 
   // If the current route is listed as public, render it directly
   // Otherwise, use Clerk to require authentication
-  return (
+  return getLayout(
     <ClerkProvider>
       {isPublicPage ? (
         <Component {...pageProps} />
       ) : (
         <>
           <SignedIn>
-            <DashboardLayout>
               <Component {...pageProps} />
-            </DashboardLayout>
           </SignedIn>
           <SignedOut>
             <RedirectToSignIn />

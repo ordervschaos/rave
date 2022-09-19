@@ -31,8 +31,8 @@ const supabaseClient = async (supabaseAccessToken) => {
 export default function AddRaveForm() {
   const { session } = useSession();
 
-  const [newRaveItem, setNewRaveItem] = useState("test");
-  const [newRaveReview, setNewRaveReview] = useState("test");
+  const [newRaveItem, setNewRaveItem] = useState("Title");
+  const [newRaveReview, setNewRaveReview] = useState("Tell us why you love it!");
   const [newRaveLink, setNewRaveLink] = useState("test");
   const [selectedType, setSelectedType] = useState('Book')
 
@@ -49,7 +49,7 @@ export default function AddRaveForm() {
     const supabase = await supabaseClient(supabaseAccessToken);
     const response = await supabase
       .from("rave")
-      .insert({ item: newRaveItem, review: newRaveReview,type:selectedType,link:newRaveLink, author_id: session.user.id });
+      .insert({ item: newRaveItem, review: newRaveReview, type: selectedType, link: newRaveLink, author_id: session.user.id });
 
     // setRaves([...raves, data[0]]);
     setNewRaveItem("test");
@@ -57,25 +57,26 @@ export default function AddRaveForm() {
   };
 
   return (
-    <div>
-      <div className="md:grid md:grid-cols-3 md:gap-6">
+    <div className="content-center	">
+      <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[45rem]">
         <form onSubmit={handleSubmit}>
-          <div className="shadow sm:overflow-hidden sm:rounded-md">
+          <div className="sm:overflow-hidden sm:rounded-md">
             <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-3 gap-6">
-                <div className="col-span-3 sm:col-span-2">
+                {/* <div className="col-span-3 sm:col-span-2">
                   <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                     I found something to rave about
                   </label>
                   <SuggestiveDropdown rave_types={rave_types} selectedType={selectedType} setSelectedType={setSelectedType} />
-                </div>
+                </div> */}
               </div>
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+
+              </div>
+              <div>
                 <div className="grid grid-cols-3 gap-6">
                   <div className="col-span-3 sm:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Called 
-                    </label>
+
                     <div className="mt-1">
                       <input
                         type="text"
@@ -88,11 +89,7 @@ export default function AddRaveForm() {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                  Why do I love it?
-                </label>
+
                 <div className="mt-1">
                   <textarea
                     id="about"
@@ -103,10 +100,10 @@ export default function AddRaveForm() {
                     onChange={(e) => setNewRaveReview(e.target.value)} value={newRaveReview}
                   />
                 </div>
-               
-               
+
+
               </div>
-              <div className="col-span-3 sm:col-span-2">
+              {/* <div className="col-span-3 sm:col-span-2">
                 <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                   Link
                 </label>
@@ -123,12 +120,12 @@ export default function AddRaveForm() {
                     onChange={(e) => setNewRaveLink(e.target.value)} value={newRaveLink}
                   />
                 </div>
-              </div>
-              <button
-                  type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                  Add
-              </button>
+              </div> */}
+              {/* <button
+                type="submit"
+                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Add
+              </button> */}
             </div>
           </div>
         </form>
