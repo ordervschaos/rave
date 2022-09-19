@@ -1,10 +1,11 @@
 import { useSession } from "@clerk/nextjs";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createClient } from "@supabase/supabase-js";
 
 
 import SuggestiveDropdown from "./SuggestiveDropdown";
-
+import dynamic from "next/dynamic";
+const Editor = dynamic(() => import("./Editor"), { ssr: false });
 const rave_types = [
   { id: 1, name: 'Video' },
   { id: 2, name: 'Movie' },
@@ -26,15 +27,26 @@ const supabaseClient = async (supabaseAccessToken) => {
   return supabase;
 };
 
+// import EditorJS from '@editorjs/editorjs';
 
 
 export default function AddRaveForm() {
   const { session } = useSession();
 
-  const [newRaveItem, setNewRaveItem] = useState("Title");
+  const [newRaveItem, setNewRaveItem] = useState("");
   const [newRaveReview, setNewRaveReview] = useState("Tell us why you love it!");
   const [newRaveLink, setNewRaveLink] = useState("test");
   const [selectedType, setSelectedType] = useState('Book')
+
+  useEffect(() => {
+    
+    // const editor = new EditorJS({
+    //   /**
+    //    * Id of Element that should contain Editor instance
+    //    */
+    //   holder: 'editorjs'
+    // });
+  }, [])
 
 
   const handleSubmit = async (e) => {
@@ -78,19 +90,23 @@ export default function AddRaveForm() {
                   <div className="col-span-3 sm:col-span-2">
 
                     <div className="mt-1">
-                      <input
+                      <input 
                         type="text"
-                        name="company-website"
-                        id="company-website"
-                        className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="www.example.com"
-                        onChange={(e) => setNewRaveItem(e.target.value)} value={newRaveItem}
+                        key="newRaveItem1" 
+                        name="newRaveItem1"
+                        className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-3xl placeholder-gray-400 ml-[1.2em]"
+                        placeholder="The awesome thing"
+                        onChange={(e) => setNewRaveItem(e.target.value)}
+                         value={newRaveItem}
                       />
                     </div>
                   </div>
                 </div>
+                {/* <div id="editorjs"> </div> */}
+                  <Editor/>
 
-                <div className="mt-1">
+
+                {/* <div className="mt-1">
                   <textarea
                     id="about"
                     name="about"
@@ -99,7 +115,7 @@ export default function AddRaveForm() {
                     placeholder="you@example.com"
                     onChange={(e) => setNewRaveReview(e.target.value)} value={newRaveReview}
                   />
-                </div>
+                </div> */}
 
 
               </div>

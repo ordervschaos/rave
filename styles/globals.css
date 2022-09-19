@@ -26,6 +26,21 @@ a {
   }
 } */
 
+.codex-editor{
+  margin-left: 2em;
+  padding-left: 1em;
+}
+
+.ce-toolbar__plus {
+  border:1px;
+  border-style: solid;
+  border-color: #999;
+  border-radius: 50%;
+  color: #999;
+
+
+}
+
 @tailwind base; 
 @tailwind components; 
 @tailwind utilities;
