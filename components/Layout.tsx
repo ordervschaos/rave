@@ -11,15 +11,14 @@ import {
   UsersIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  { name: 'Home', href: '/', icon: HomeIcon, current: true },
+  { name: 'My Raves', href: '/username', icon: UsersIcon, current: false },
+  { name: 'Post new Rave', href: '/create', icon: FolderIcon, current: false },
+  { name: 'Ask someone', href: '/ask', icon: CalendarIcon, current: false },
+  
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -104,11 +103,13 @@ export default function Layout({ children }) {
                           {item.name}
                         </a>
                       ))}
+                      
                     </nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0" aria-hidden="true">
+                
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>
             </div>
@@ -143,38 +144,8 @@ export default function Layout({ children }) {
                 ))}
               </nav>
             </div>
-          </div>
-        </div>
-        <div className="flex flex-1 flex-col md:pl-64">
-          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-            <button
-              type="button"
-              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <span className="sr-only">Open sidebar</span>
-              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-            <div className="flex flex-1 justify-between px-4">
-              <div className="flex flex-1">
-                <form className="flex w-full md:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                      <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <input
-                      id="search-field"
-                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                      placeholder="Search"
-                      type="search"
-                      name="search"
-                    />
-                  </div>
-                </form>
-              </div>
+            <div className="mt-5 flex flex-1 flex-col">
+              <nav className="flex-1 space-y-1 px-2 pb-4">
               <div className="ml-4 flex items-center md:ml-6">
                 <button
                   type="button"
@@ -225,7 +196,20 @@ export default function Layout({ children }) {
                   </Transition>
                 </Menu>
               </div>
+              </nav>
             </div>
+          </div>
+        </div>
+        <div className="flex flex-1 flex-col md:pl-64">
+          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow md:hidden lg:hidden">
+            <button
+              type="button"
+              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
           </div>
 
           <main>

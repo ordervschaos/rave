@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { createClient } from "@supabase/supabase-js";
 
 
-import SuggestiveDropdown from "./SuggestiveDropdown";
 import dynamic from "next/dynamic";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 const rave_types = [
@@ -38,15 +37,7 @@ export default function AddRaveForm() {
   const [newRaveLink, setNewRaveLink] = useState("test");
   const [selectedType, setSelectedType] = useState('Book')
 
-  useEffect(() => {
-    
-    // const editor = new EditorJS({
-    //   /**
-    //    * Id of Element that should contain Editor instance
-    //    */
-    //   holder: 'editorjs'
-    // });
-  }, [])
+  
 
 
   const handleSubmit = async (e) => {
@@ -105,8 +96,8 @@ export default function AddRaveForm() {
                     </div>
                   </div>
                 </div>
-                {/* <div id="editorjs"> </div> */}
-                  <Editor/>
+
+                  
 
 
                 {/* <div className="mt-1">
@@ -145,7 +136,9 @@ export default function AddRaveForm() {
                 className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Add
               </button> */}
+              
             </div>
+            <Editor/>
           </div>
         </form>
       </div>

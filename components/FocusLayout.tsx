@@ -36,7 +36,7 @@ export default function FocusLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <>
+    <div  className='container mx-auto'>
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
           <Transition.Child
@@ -114,7 +114,7 @@ export default function FocusLayout({ children }) {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white ">
         <button
           type="button"
           className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -123,25 +123,11 @@ export default function FocusLayout({ children }) {
           <span className="sr-only">Open sidebar</span>
           <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
         </button>
-        <div className="flex flex-1 justify-between px-4">
+        <div className="flex flex-1 items-center px-4">
           <div className="flex flex-1">
-            <form className="flex w-full md:ml-0" action="#" method="GET">
-              <label htmlFor="search-field" className="sr-only">
-                Search
-              </label>
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                  placeholder="Search"
-                  type="search"
-                  name="search"
-                />
-              </div>
-            </form>
+            <a href='/'>
+              <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
+            </a>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
             <button
@@ -196,6 +182,6 @@ export default function FocusLayout({ children }) {
         </div>
       </div>
       <main>{children}</main>
-    </>
+    </div>
   )
 }
