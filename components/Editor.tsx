@@ -23,10 +23,10 @@ export default function Editor({ data,saveForm }) {
     
   }, [])
 
-  console.log(data)
+  console.log("data----",data)
   return (
     <>
-      <ReactEditorJS defaultValue={data} onInitialize={handleInitialize} autofocus={true} onChange={handleSave} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
+      <ReactEditorJS defaultValue={JSON.parse(data)} onInitialize={handleInitialize} autofocus={true} onChange={handleSave} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }

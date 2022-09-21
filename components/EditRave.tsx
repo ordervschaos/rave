@@ -63,29 +63,29 @@ export default function AddRaveForm() {
   //TODO:  fetch this from supabase
 
 
-  const [raveReview, setRaveReview] = useState(JSON.stringify(review_data));
+  const [raveReview, setRaveReview] = useState();
   
-  // const loadData= async () => {
-  //   const supabaseAccessToken = await session.getToken({
-  //     template: "supabase",
-  //   });
-  //   const supabase = await supabaseClient(supabaseAccessToken);
+  const loadData= async () => {
+    const supabaseAccessToken = await session.getToken({
+      template: "supabase",
+    });
+    const supabase = await supabaseClient(supabaseAccessToken);
 
-  //   var rave = await supabase.from("rave").select().eq('id', 6);
-  //   console.log(rave)
-  //   rave=rave.data[0]
+    var rave = await supabase.from("rave").select().eq('id', 6);
+    console.log(rave)
+    rave=rave.data[0]
 
-  //     setRaveTitle(rave.title)
-  //     setRaveReview(rave.review)
+      setRaveTitle(rave.title)
+      setRaveReview(rave.review)
 
-  // }
+  }
   
-  // useEffect(() => {
-  //   loadData()
-  // }, [])
+  useEffect(() => {
+    loadData()
+  }, [])
 
   const saveForm = async (reviewData) => {
-    // e.preventDefault();
+
     const supabaseAccessToken = await session.getToken({
       template: "supabase",
     });
@@ -105,7 +105,7 @@ export default function AddRaveForm() {
     <div className="content-center	">
 
       <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
-        <form onSubmit={saveForm} className="pl-2">
+        <div onSubmit={saveForm} className="pl-2">
 
           <div className="sm:overflow-hidden sm:rounded-md">
             <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -184,7 +184,7 @@ export default function AddRaveForm() {
             {raveReview && <Editor data={raveReview} saveForm={saveForm}/>}
             
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
