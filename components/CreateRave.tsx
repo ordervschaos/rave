@@ -33,7 +33,24 @@ export default function AddRaveForm() {
   const { session } = useSession();
 
   const [newRaveItem, setNewRaveItem] = useState("");
-  const [newRaveReview, setNewRaveReview] = useState("Tell us why you love it!");
+
+
+  var review_data= {
+    time: 1552744582955,
+    blocks: [
+      {
+        type: "image",
+        data: {
+          url: "https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg"
+        }
+      }
+    ],
+    version: "2.11.10"
+  }
+  console.log("review_data")
+  console.log()
+
+  const [newRaveReview, setNewRaveReview] = useState(JSON.stringify(review_data));
   const [newRaveLink, setNewRaveLink] = useState("test");
   const [selectedType, setSelectedType] = useState('Book')
 
@@ -56,14 +73,15 @@ export default function AddRaveForm() {
 
     // setRaves([...raves, data[0]]);
     setNewRaveItem("test");
-    setNewRaveReview("test");
+    
+    setNewRaveReview(JSON.stringify(review_data))
   };
 
   return (
     <div className="content-center	">
 
       <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="pl-2">
 
           <div className="sm:overflow-hidden sm:rounded-md">
             <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -88,7 +106,7 @@ export default function AddRaveForm() {
                         type="text"
                         key="newRaveItem1" 
                         name="newRaveItem1"
-                        className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.7em]"
+                        className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.5em] lg:ml-20 lg:placeholder:ml-20"
                         placeholder="The awesome thing"
                         onChange={(e) => setNewRaveItem(e.target.value)}
                          value={newRaveItem}
@@ -138,7 +156,8 @@ export default function AddRaveForm() {
               </button> */}
               
             </div>
-            <Editor/>
+            <Editor setData={setNewRaveReview} data={newRaveReview}/>
+            
           </div>
         </form>
       </div>

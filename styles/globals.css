@@ -27,8 +27,8 @@ a {
 } */
 
 .codex-editor{
-  margin-left: 2em;
-  padding-left: 1em;
+  margin-left: 0em;
+  padding-left: 3em;
 }
 
 .ce-toolbar__plus {
@@ -40,6 +40,8 @@ a {
 
 
 }
+
+
 
 @tailwind base; 
 @tailwind components; 

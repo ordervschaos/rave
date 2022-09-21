@@ -1,28 +1,55 @@
 
 import EditorJS from '@editorjs/editorjs';
-import { useEffect } from 'react';
+import SimpleImage from '@editorjs/simple-image';
+import { useEffect, useId, useState } from 'react';
 
 
 
 
-export default function Editor() {
+export default function Editor({data,setData}) {
+  const id = useId();
+  const [editor, setEditor] = useState<EditorJS | null>(null);
   useEffect(() => {
-    
-    const editor = new EditorJS({
-      /**
-       * Id of Element that should contain Editor instance
-       */
-       placeholder: 'Let`s write an awesome story!',
-    
-      data:{}
-    });
+    setEditor((prevEditor) => {
+      if (!prevEditor) {
+        return new EditorJS({
+          holder: id,
+          autofocus: true,
+          // placeholder: 'Tell us why you love it!',
+          tools: {
+            image: SimpleImage
+          },
+          data:JSON.parse(data)
+          
+        });
+      }
 
-    
-  }, [])
+     
+
+      return null;
+    });
+    return () => {
+      if (editor) {
+        editor.destroy();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (editor) {
+      editor.isReady.then(() => {
+
+        editor.save().then((outputData) => {
+          setData(JSON.stringify(outputData))
+          console.log('Article data: ', outputData);
+        });
+      });
+    }
+  }, [editor]);
   
   return (
     <>
-      <div id="editorjs"></div>
+      <div className='placeholder-gray-300' id={id}></div>
     </>
   )
 }
