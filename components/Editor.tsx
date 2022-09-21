@@ -1,55 +1,19 @@
 
-import EditorJS from '@editorjs/editorjs';
-import SimpleImage from '@editorjs/simple-image';
 import { useEffect, useId, useState } from 'react';
+import { EDITOR_JS_TOOLS } from './Editor/tools'
 
+import { createReactEditorJS } from 'react-editor-js'
+const ReactEditorJS = createReactEditorJS()
 
 
 
 export default function Editor({data,setData}) {
-  const id = useId();
-  const [editor, setEditor] = useState<EditorJS | null>(null);
-  useEffect(() => {
-    setEditor((prevEditor) => {
-      if (!prevEditor) {
-        return new EditorJS({
-          holder: id,
-          autofocus: true,
-          // placeholder: 'Tell us why you love it!',
-          tools: {
-            image: SimpleImage
-          },
-          data:JSON.parse(data)
-          
-        });
-      }
-
-     
-
-      return null;
-    });
-    return () => {
-      if (editor) {
-        editor.destroy();
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (editor) {
-      editor.isReady.then(() => {
-
-        editor.save().then((outputData) => {
-          setData(JSON.stringify(outputData))
-          console.log('Article data: ', outputData);
-        });
-      });
-    }
-  }, [editor]);
+  const defaultValue = JSON.parse(data)
+  
   
   return (
     <>
-      <div className='placeholder-gray-300' id={id}></div>
+      <ReactEditorJS defaultValue={defaultValue} autofocus={true} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }

@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { createClient } from "@supabase/supabase-js";
 
 
+
+
+
 import dynamic from "next/dynamic";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 const rave_types = [
@@ -156,6 +159,7 @@ export default function AddRaveForm() {
               </button> */}
               
             </div>
+            
             <Editor setData={setNewRaveReview} data={newRaveReview}/>
             
           </div>
