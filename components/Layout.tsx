@@ -16,7 +16,7 @@ import {
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, current: true },
   { name: 'My Raves', href: '/username', icon: UsersIcon, current: false },
-  { name: 'Post new Rave', href: '/create', icon: FolderIcon, current: false },
+  { name: 'Post new Rave', href: '/edit', icon: FolderIcon, current: false },
   { name: 'Ask someone', href: '/ask', icon: CalendarIcon, current: false },
   
 ]
