@@ -7,6 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 
 //import Editor
 import dynamic from "next/dynamic";
+import FocusMenu from "./FocusMenu";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
 //supabaseClient init
@@ -74,43 +75,64 @@ export default function EditRave() {
       .update({ title: e.target.value,author_id: session.user.id }).match({ id: 6 });
     
   }
+
+  
+  //function to save title
+  const publishPost =async (e) => {
+    console.log('publishing post')
+  
+    const supabaseAccessToken = await session.getToken({
+      template: "supabase",
+    });
+    const supabase = await supabaseClient(supabaseAccessToken);
+    
+    await supabase
+      .from("rave")
+      .update({ status: 'published',author_id: session.user.id }).match({ id: 6 });
+    
+  }
+
+
   
 
 
 
   return (
-    <div className="content-center	">
+    <div>
+      <FocusMenu handleClick={publishPost}/>
+      <div className="content-center	">
 
-      <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
-        <div  className="pl-2">
+        <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
+          <div  className="pl-2">
 
-          <div className="sm:overflow-hidden sm:rounded-md">
-            <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div className="sm:overflow-hidden sm:rounded-md">
+              <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
 
-              <div>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="col-span-3 sm:col-span-2">
+                <div>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-3 sm:col-span-2">
 
-                    <div className="mt-3">
-                      <input
-                        type="text"
-                        key="raveTitle1"
-                        name="raveTitle1"
-                        className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.5em] lg:ml-20 lg:placeholder:ml-20"
-                        placeholder="The awesome thing"
-                        onChange={saveTitle}
-                        value={raveTitle}
-                      />
+                      <div className="mt-3">
+                        <input
+                          type="text"
+                          key="raveTitle1"
+                          name="raveTitle1"
+                          className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.5em] lg:ml-20 lg:placeholder:ml-20"
+                          placeholder="The awesome thing"
+                          onChange={saveTitle}
+                          value={raveTitle}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
+        
+
               </div>
-      
+
+              {postData&&<Editor data={postData}  />}
 
             </div>
-
-            {postData&&<Editor data={postData}  />}
-
           </div>
         </div>
       </div>
