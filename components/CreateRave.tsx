@@ -70,7 +70,7 @@ export default function AddRaveForm() {
     const supabase = await supabaseClient(supabaseAccessToken);
     const response = await supabase
       .from("rave")
-      .insert({ item: newRaveItem, review: newRaveReview, type: selectedType, link: newRaveLink, author_id: session.user.id });
+      .insert({ title: newRaveItem, review: newRaveReview, type: selectedType, link: newRaveLink, author_id: session.user.id });
 
     // setRaves([...raves, data[0]]);
     setNewRaveItem("test");
