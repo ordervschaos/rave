@@ -25,8 +25,6 @@ const supabaseClient = async (supabaseAccessToken) => {
 
 export default function Editor({ data,saveForm }) {
   const { session } = useSession();
-  const [initial_data, setInitialData] = useState()
-
   const editorCore = React.useRef(null)
 
   const handleInitialize = React.useCallback((instance) => {
@@ -34,62 +32,32 @@ export default function Editor({ data,saveForm }) {
   }, [])
 
   const handleChange = React.useCallback(async () => {
-    console.log("handleChange")
     const savedData = await editorCore.current.save();
-    
-    console.log("savedData")
-    console.log(savedData)
+    if(savedData.blocks.length==0){
+      return
+    }else{
+      //update the data in supabase
+      const supabaseAccessToken = await session.getToken({
+        template: "supabase",
+      });
+      const supabase = await supabaseClient(supabaseAccessToken);
+      
+      await supabase
+        .from("rave")
+        .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: 6 });
+    }
 
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
-    
-    const response = await supabase
-      .from("rave")
-      .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: 6 });
 
-    console.log("update response",response.body[0].review)
-    
   }, [])
 
- useEffect(() => {
-    
-  const loadData = async () => {
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
-
-    var rave = await supabase.from("rave").select().eq('id', 6);
-    rave = rave.data[0]
-    setInitialData(JSON.parse(rave.review))
-    
-
-  }
-
-
-  
-   
-
-  //load data on page load
-
-    loadData()
- },[])
-
-
-  // try {
-  //     initial_data=JSON.parse(initial_data);
-  // } catch (e) {
-  //     initial_data={}
-  // }
 
 
   
 
   return (
     <>
-      {initial_data&&<ReactEditorJS defaultValue={initial_data} onInitialize={handleInitialize} autofocus={true} onChange={handleChange} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />}
+      <ReactEditorJS defaultValue={JSON.parse(data.review)} onInitialize={handleInitialize} autofocus={true} onChange={handleChange} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }
+// 
