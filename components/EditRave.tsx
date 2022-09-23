@@ -30,34 +30,10 @@ const supabaseClient = async (supabaseAccessToken) => {
 
 
 
-export default function EditRave() {
+export default function EditRave({post}) {
   const { session } = useSession();
 
-  const [raveTitle, setRaveTitle] = useState("");
-  const [postData, setPostData] = useState();
-  
-  
-  //function to load data into editor
-  const loadData = async () => {
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
-
-    var rave = await supabase.from("rave").select().eq('id', 6);
-    rave = rave.data[0]
-    setPostData(rave)
-    setRaveTitle(rave.title)
-  }
-
-
-  
-   
-
-  //load data on component mount
-  useEffect(() => {
-    loadData()
-  }, [])
+  const [raveTitle, setRaveTitle] = useState(post.title);
 
 
   //function to save title
@@ -130,7 +106,7 @@ export default function EditRave() {
 
               </div>
 
-              {postData&&<Editor data={postData}  />}
+              {post&&<Editor review_data={post.review}  />}
 
             </div>
           </div>

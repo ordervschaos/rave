@@ -23,7 +23,7 @@ const supabaseClient = async (supabaseAccessToken) => {
 
 
 
-export default function Editor({ data,saveForm }) {
+export default function Editor({ review_data,saveForm }) {
   const { session } = useSession();
   const editorCore = React.useRef(null)
 
@@ -56,7 +56,7 @@ export default function Editor({ data,saveForm }) {
 
   return (
     <>
-      <ReactEditorJS defaultValue={JSON.parse(data.review)} onInitialize={handleInitialize} autofocus={true} onChange={handleChange} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
+      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize} autofocus={true} onChange={handleChange} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }

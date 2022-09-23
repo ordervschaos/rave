@@ -2,12 +2,19 @@
 import EditRave from '../components/EditRave'
 import FocusLayout from '../components/FocusLayout'
 
+import { createClient } from "@supabase/supabase-js";
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 
-export default function Edit({data}) {
+
+
+export default function Edit({post}) {
   return (
     <>
-      <EditRave/>
+      <EditRave post={post}/>
     </>
   )
 }
@@ -20,3 +27,17 @@ Edit.getLayout = function getLayout(page) {
   )
 }
 
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  var post = await supabase.from("rave").select().eq('id', 6);
+  post = post.data[0]
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      post,
+    },
+  }
+}
