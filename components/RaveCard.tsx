@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Blocks from 'editorjs-blocks-react-renderer';
 
 
 export default function RaveCard({ rave }) {
@@ -23,7 +24,7 @@ export default function RaveCard({ rave }) {
         <div>
           <h4 className="text-lg font-bold">{rave.title}</h4>
           <p className="mt-1">
-            {rave.review}
+            <Blocks data={JSON.parse(rave.review)} />
           </p>
         </div>
       </div>

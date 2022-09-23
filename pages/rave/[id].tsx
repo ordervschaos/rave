@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import { useSession } from "@clerk/nextjs";
 import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
 import RaveCard from '../../components/RaveCard';
@@ -12,11 +10,8 @@ const supabase = createClient(
 
 
 export default function viewRave({ rave }) {
-
-
-
   return (
-    <div className="mt-6 flow-root">
+    <div className="mt-6 flow-root lg:px-24">
       <ul role="list" className="divide-y divide-gray-200 px-5">
         <RaveCard key={rave.id} rave={rave} />
       </ul>
@@ -34,9 +29,6 @@ viewRave.getLayout = function getLayout(page) {
 
 
 export async function getStaticProps({ params }) {
-
-
-
   var rave = await supabase.from("rave").select().eq('id', params.id);
   rave = rave.data[0]
 
