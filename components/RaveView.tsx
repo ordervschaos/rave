@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Blocks from 'editorjs-blocks-react-renderer';
-import { Card } from './Card'
+import {
+  PencilSquareIcon,
+} from '@heroicons/react/24/outline'
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -35,7 +37,12 @@ export default function RaveView({ rave }) {
 
 
     <div className='font-serif'>
-
+      <Link href={"/rave/"+rave.id+"/edit"  } className="sm:flex py-8 " key={rave.id} >
+        <PencilSquareIcon
+          className='float-right text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6'
+          aria-hidden="true"
+        />
+        </Link>
       <h1 className='text-4xl mb-12 '>{rave.title}</h1>
 
 

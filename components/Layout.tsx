@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 
 
@@ -32,6 +32,7 @@ function classNames(...classes) {
 }
 
 export default function Layout({children}) {
+  
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -224,3 +225,4 @@ export default function Layout({children}) {
     </>
   )
 }
+

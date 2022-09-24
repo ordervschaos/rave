@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import Layout from '../../components/Layout'
-import RaveView from '../../components/RaveView';
+import Layout from '../../../components/Layout'
+import RaveView from '../../../components/RaveView';
 
 
 const supabase = createClient(
