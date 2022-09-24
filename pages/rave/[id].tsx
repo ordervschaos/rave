@@ -1,6 +1,6 @@
-import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import RaveCard from '../../components/RaveCard';
+import Layout from '../../components/Layout'
+import RaveView from '../../components/RaveView';
 
 
 const supabase = createClient(
@@ -13,7 +13,7 @@ export default function viewRave({ rave }) {
   return (
     <div className="mt-6 flow-root lg:px-24">
       <ul role="list" className="divide-y divide-gray-200 px-5">
-        <RaveCard key={rave.id} rave={rave} />
+        <RaveView key={rave.id} rave={rave} />
       </ul>
     </div>
   )
