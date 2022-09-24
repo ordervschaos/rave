@@ -42,9 +42,9 @@ export default function RaveCard({ rave }) {
           {rave.title}
         </Card.Title>
         
-        <Card.Eyebrow as="time" dateTime={rave.created_at} decorate>
+        {/* <Card.Eyebrow as="time" dateTime={rave.created_at} decorate>
           {formatDate(rave.created_at.split('T')[0])}
-        </Card.Eyebrow>
+        </Card.Eyebrow> */}
         <Card.Description>            
           <Blocks data={JSON.parse(rave.review)} />
         </Card.Description>
