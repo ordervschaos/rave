@@ -1,10 +1,23 @@
 import Link from 'next/link'
 import Blocks from 'editorjs-blocks-react-renderer';
+import { Card } from './Card'
+
+export function formatDate(dateString) {
+  return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
 
 
 export default function RaveCard({ rave }) {
   try{
-    JSON.parse(rave.review)
+    var review=JSON.parse(rave.review)
+    review.blocks=review.blocks.filter((block) => block.type == 'paragraph')
+    rave.review=JSON.stringify(review)
+        
   }catch{
     rave.review = JSON.stringify({
       version: "2.11.10",
@@ -22,27 +35,21 @@ export default function RaveCard({ rave }) {
 
 
 
-    <Link href={"/rave/"+rave.id  } className="sm:flex py-8" key={rave.id} >
-      <div>  
-        <div className="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
-          <svg
-            className="h-16 w-16 border border-gray-300 bg-white text-gray-300"
-            preserveAspectRatio="none"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 200 200"
-            aria-hidden="true"
-          >
-            <path vectorEffect="non-scaling-stroke" strokeWidth={1} d="M0 0l200 200M0 200L200 0" />
-          </svg>
-        </div>
-        <div>
-          <h4 className="text-lg font-bold">{rave.title}</h4>
-          <p className="mt-1">
-            <Blocks data={JSON.parse(rave.review)} />
-          </p>
-        </div>
-      </div>
+    <Link href={"/rave/"+rave.id  } className="sm:flex py-8 " key={rave.id} >
+
+      <Card as="article">
+        <Card.Title href={`/rave/${rave.id}`}>
+          {rave.title}
+        </Card.Title>
+        
+        <Card.Eyebrow as="time" dateTime={rave.created_at} decorate>
+          {formatDate(rave.created_at.split('T')[0])}
+        </Card.Eyebrow>
+        <Card.Description>            
+          <Blocks data={JSON.parse(rave.review)} />
+        </Card.Description>
+        <Card.Cta>Read post</Card.Cta>
+      </Card>
     </Link>
   )
 }

@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <div className="mt-6 flow-root">
 
-      <ul role="list" className="divide-y divide-gray-200 px-5">
+      <ul role="list" className="divide-y divide-gray-200 px-5 w-1/2">
         {allRaves && allRaves.map((rave) => (
           <RaveCard key={rave.id} rave={rave} />
         ))}
