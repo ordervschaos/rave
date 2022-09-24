@@ -3,11 +3,26 @@ import Blocks from 'editorjs-blocks-react-renderer';
 
 
 export default function RaveCard({ rave }) {
+  try{
+    JSON.parse(rave.review)
+  }catch{
+    rave.review = JSON.stringify({
+      version: "2.11.10",
+      blocks: [
+        {
+          type: "paragraph",
+          data: {
+            text: rave.review
+          }
+        }
+      ],
+    })
+  }
   return (
 
 
 
-    <Link href="/rave/{rave.id}" className="sm:flex py-8" key={rave.id} >
+    <Link href={"/rave/"+rave.id  } className="sm:flex py-8" key={rave.id} >
       <div>  
         <div className="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
           <svg

@@ -28,7 +28,7 @@ Edit.getLayout = function getLayout(page) {
 }
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts
   var post = await supabase.from("rave").select().eq('id', 6);
   post = post.data[0]

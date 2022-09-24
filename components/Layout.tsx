@@ -3,21 +3,17 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   Bars3BottomLeftIcon,
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
-  UsersIcon,
   XMarkIcon,
+  PencilSquareIcon,
+  DocumentTextIcon
 } from '@heroicons/react/24/outline'
 
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, current: true },
-  { name: 'My Raves', href: '/username', icon: UsersIcon, current: false },
-  { name: 'Post new Rave', href: '/edit', icon: FolderIcon, current: false },
-  { name: 'Ask someone', href: '/ask', icon: CalendarIcon, current: false },
+  { name: 'My Raves', href: '/username', icon: DocumentTextIcon, current: false },
+  { name: 'Post new Rave', href: '/edit', icon: PencilSquareIcon, current: false },
   
 ]
 const userNavigation = [
