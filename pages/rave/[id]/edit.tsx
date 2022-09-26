@@ -32,7 +32,6 @@ export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get posts
   var post = await supabase.from("rave").select().eq('id', params.id);
   post = post.data[0]
-
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {

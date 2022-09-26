@@ -23,15 +23,19 @@ const supabaseClient = async (supabaseAccessToken) => {
 
 
 
-export default function Editor({ review_data,saveForm }) {
+export default function Editor({ post }) {
+
+
   const { session } = useSession();
   const editorCore = React.useRef(null)
+
+  var review_data=post.review
 
   const handleInitialize = React.useCallback((instance) => {
     editorCore.current = instance
   }, [])
 
-  const handleChange = React.useCallback(async () => {
+  const saveReview = React.useCallback(async () => {
     const savedData = await editorCore.current.save();
     if(savedData.blocks.length==0){
       return
@@ -41,10 +45,10 @@ export default function Editor({ review_data,saveForm }) {
         template: "supabase",
       });
       const supabase = await supabaseClient(supabaseAccessToken);
-      
+      console.log("saved",  post )
       await supabase
         .from("rave")
-        .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: 6 });
+        .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: post.id });
     }
 
 
@@ -56,7 +60,7 @@ export default function Editor({ review_data,saveForm }) {
 
   return (
     <>
-      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize} autofocus={true} onChange={handleChange} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
+      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize} autofocus={true} onChange={saveReview} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }

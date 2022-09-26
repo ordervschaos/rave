@@ -1,6 +1,7 @@
 import { useSession } from "@clerk/nextjs";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { createClient } from "@supabase/supabase-js";
+
 
 
 
@@ -8,6 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 //import Editor
 import dynamic from "next/dynamic";
 import FocusMenu from "./FocusMenu";
+import Router from "../node_modules/next/router";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
 //supabaseClient init
@@ -37,7 +39,7 @@ export default function EditRave({post}) {
 
 
   //function to save title
-  const saveTitle =async (e) => {
+  const saveTitle =async (post,e) => {
     //update title in supabase  
     setRaveTitle(e.target.value)
   
@@ -48,13 +50,13 @@ export default function EditRave({post}) {
     
     await supabase
       .from("rave")
-      .update({ title: e.target.value,author_id: session.user.id }).match({ id: 6 });
+      .update({ title: e.target.value,author_id: session.user.id }).match({ id: post.id });
     
   }
 
   
   //function to save title
-  const publishPost =async (e) => {
+  const publishPost =async (post) => {
     console.log('publishing post')
   
     const supabaseAccessToken = await session.getToken({
@@ -64,7 +66,10 @@ export default function EditRave({post}) {
     
     await supabase
       .from("rave")
-      .update({ status: 'published',author_id: session.user.id }).match({ id: 6 });
+      .update({ status: 'published',author_id: session.user.id }).match({ id: post.id });
+
+      Router.push(`/rave/${post.id}`)
+
     
   }
 
@@ -75,7 +80,7 @@ export default function EditRave({post}) {
 
   return (
     <div>
-      <FocusMenu handleClick={publishPost} isPublished={post.status=='published'}/>
+      <FocusMenu handleClick={()=>publishPost(post)} isPublished={post.status=='published'}/>
       <div className="content-center	">
 
         <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">
@@ -95,7 +100,7 @@ export default function EditRave({post}) {
                           name="raveTitle1"
                           className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.5em] lg:ml-20 lg:placeholder:ml-20"
                           placeholder="The awesome thing"
-                          onChange={saveTitle}
+                          onChange={(e)=>saveTitle(post,e)}
                           value={raveTitle}
                         />
                       </div>
@@ -106,7 +111,7 @@ export default function EditRave({post}) {
 
               </div>
 
-              {post&&<Editor review_data={post.review}  />}
+              {post&&<Editor post={post}  />}
 
             </div>
           </div>

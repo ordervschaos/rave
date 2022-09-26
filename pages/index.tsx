@@ -28,7 +28,7 @@ export default function Home() {
     });
     const supabase = await supabaseClient(supabaseAccessToken);
 
-    var all_raves = await supabase.from("rave").select();
+    var all_raves = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
     all_raves = all_raves.data
     setAllRaves(all_raves)
   }
