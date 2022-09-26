@@ -5,7 +5,7 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, current: true },
   { name: 'My Raves', href: '/username', icon: DocumentTextIcon, current: false },
-  { name: 'Post new Rave', href: '/edit', icon: PencilSquareIcon, current: false },
+  { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
   
 ]
 const userNavigation = [
