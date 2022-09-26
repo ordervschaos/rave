@@ -39,7 +39,7 @@ export default function RaveView({ rave }) {
     <div className='font-serif'>
       <Link href={"/rave/"+rave.id+"/edit"  } className="sm:flex py-8 " key={rave.id} >
         <PencilSquareIcon
-          className='float-right text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6'
+          className='cursor-pointer float-right text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6'
           aria-hidden="true"
         />
         </Link>

@@ -31,7 +31,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function FocusMenu({handleClick}) {
+export default function FocusMenu({handleClick,isPublished}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -129,12 +129,13 @@ export default function FocusMenu({handleClick}) {
             </a>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
-          <button onClick={handleClick}
+          {!isPublished && <button onClick={handleClick} 
             type="button"
             className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Publish
-          </button>
+          </button>}
+          {isPublished && <button disabled className='disabled:opacity-50 disabled:cursor-not-allowed mr-3'>Published</button>}
               
             <button
               type="button"

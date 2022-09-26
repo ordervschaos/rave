@@ -75,7 +75,7 @@ export default function EditRave({post}) {
 
   return (
     <div>
-      <FocusMenu handleClick={publishPost}/>
+      <FocusMenu handleClick={publishPost} isPublished={post.status=='published'}/>
       <div className="content-center	">
 
         <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">

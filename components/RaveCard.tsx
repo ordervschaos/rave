@@ -37,7 +37,7 @@ export default function RaveCard({ rave }) {
 
     <Link href={"/rave/"+rave.id  } className="sm:flex py-8 " key={rave.id} >
 
-      <Card as="article">
+      <Card as="article" className="cursor-pointer">
         <Card.Title href={`/rave/${rave.id}`}>
           {rave.title}
         </Card.Title>
