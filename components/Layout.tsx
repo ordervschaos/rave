@@ -2,12 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 
 
-const navigation = [
-  { name: 'Home', href: '/', icon: HomeIcon, current: true },
-  { name: 'My Raves', href: '/username', icon: DocumentTextIcon, current: false },
-  { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
-  
-]
+
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -31,7 +26,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Layout({children}) {
+export default function Layout({children,user_id}) {
+  const navigation = [
+    { name: 'Home', href: '/', icon: HomeIcon, current: true },
+    { name: 'My Raves', href: '/raves/'+user_id, icon: DocumentTextIcon, current: false },
+    { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
+    
+  ]
   
   const [sidebarOpen, setSidebarOpen] = useState(false)
 

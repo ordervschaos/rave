@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import RaveCard from '../components/RaveCard';
+import RaveCard from '../../components/RaveCard';
 
 const supabaseClient = async (supabaseAccessToken) => {
   const supabase = createClient(
@@ -18,7 +18,7 @@ const supabaseClient = async (supabaseAccessToken) => {
   return supabase;
 };
 
-export default function Home() {
+export default function Home({params}) {
   const { session } = useSession();
   const [allRaves, setAllRaves] = useState([]);
   console.log(session.user)
@@ -28,7 +28,7 @@ export default function Home() {
     });
     const supabase = await supabaseClient(supabaseAccessToken);
 
-    var all_raves = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
+    var all_raves = await supabase.from("rave").select().match({status:'published',author_id:params.user_id}).order('created_at', { ascending: false });
     all_raves = all_raves.data
     setAllRaves(all_raves)
   }
@@ -52,3 +52,10 @@ export default function Home() {
   )
 }
 
+
+export async function getServerSideProps({ params }) {
+ 
+
+ // Pass post data to the page via props
+  return { props: { params } }
+}
