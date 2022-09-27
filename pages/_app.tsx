@@ -1,9 +1,9 @@
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
 
 
 
 
-
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
+import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn,UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 
 
@@ -26,9 +26,14 @@ function MyApp({ Component, pageProps }) {
 
   // Check if the current route matches a public page
   const isPublicPage = publicPages.includes(pathname);
+  
 
+
+  var userButton=<UserButton/>;
   // If the current route is listed as public, render it directly
   // Otherwise, use Clerk to require authentication
+  pageProps.userButton=userButton;
+  // pageProps.userButton=user;
   return getLayout(
     <ClerkProvider>
       {isPublicPage ? (
@@ -36,7 +41,7 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <>
           <SignedIn>
-              <Component {...pageProps} />
+              <Component {...pageProps} />  
           </SignedIn>
           <SignedOut>
             <RedirectToSignIn />
@@ -48,3 +53,6 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+
+
