@@ -3,21 +3,13 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 
 
 
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
-
-
-
 import {
   Bars3Icon,
   PencilSquareIcon,
   DocumentTextIcon,
   HomeIcon,
   XMarkIcon,
+  BookmarkIcon
 } from '@heroicons/react/24/outline'
 
 
@@ -31,6 +23,7 @@ export default function Layout({children,user}) {
     { name: 'Home', href: '/', icon: HomeIcon, current: true },
     { name: 'My Raves', href: '/raves/' +user.id, icon: DocumentTextIcon, current: false },
     { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
+    { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
     
   ]
   

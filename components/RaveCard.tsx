@@ -68,7 +68,6 @@ export default function RaveCard({ post }) {
         </Card>
       </Link>
         <BoookmarkButton post_id={post.id}/>
-        <ThumbsupButton/>
     </div>
 
   )

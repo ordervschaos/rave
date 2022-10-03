@@ -19,3 +19,16 @@ export const supabaseClient = async (session) => {
 
   return supabase;
 };
+export const supabaseServerSide = async (req_auth) => {
+ 
+  const supabaseAccessToken = await req_auth.getToken({
+    template: "supabase",
+  });
+
+  // set Supabase JWT on the client object, 
+  // so it is sent up with all Supabase requests
+  // supabase.auth.setAuth(supabaseAccessToken);
+  const { user, error } = supabase.auth.setAuth(supabaseAccessToken)
+
+  return supabase;
+};
