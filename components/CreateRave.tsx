@@ -8,27 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import dynamic from "next/dynamic";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
-const rave_types = [
-  { id: 1, name: 'Video' },
-  { id: 2, name: 'Movie' },
-  { id: 3, name: 'Book' },
-  // More users...
-]
-const supabaseClient = async (supabaseAccessToken) => {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-  console.log(supabase)
-
-  // set Supabase JWT on the client object, 
-  // so it is sent up with all Supabase requests
-  // supabase.auth.setAuth(supabaseAccessToken);
-  const { user, error } = supabase.auth.setAuth(supabaseAccessToken)
-
-  return supabase;
-};
-
+import {supabaseClient} from '../utils/supabaseClient'
 // import EditorJS from '@editorjs/editorjs';
 
 
@@ -64,10 +44,7 @@ export default function AddRaveForm() {
     e.preventDefault();
     
 
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
+    const supabase = await supabaseClient(session);
     const response = await supabase
       .from("rave")
       .insert({ title: newRaveItem, review: newRaveReview, type: selectedType, link: newRaveLink, author_id: session.user.id });

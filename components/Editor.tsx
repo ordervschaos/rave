@@ -2,24 +2,10 @@ import { useSession } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useId, useState } from 'react';
 import { EDITOR_JS_TOOLS } from './Editor/tools'
-
+import {supabaseClient} from '../utils/supabaseClient'
 import { createReactEditorJS } from 'react-editor-js'// documentation at: https://github.com/Jungwoo-An/react-editor-js
 import React from 'react';
 const ReactEditorJS = createReactEditorJS()
-
-const supabaseClient = async (supabaseAccessToken) => {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-
-  // set Supabase JWT on the client object, 
-  // so it is sent up with all Supabase requests
-  // supabase.auth.setAuth(supabaseAccessToken);
-  const { user, error } = supabase.auth.setAuth(supabaseAccessToken)
-
-  return supabase;
-};
 
 
 
@@ -41,12 +27,9 @@ export default function Editor({ post }) {
       return
     }else{
       //update the data in supabase
-      const supabaseAccessToken = await session.getToken({
-        template: "supabase",
-      });
-      const supabase = await supabaseClient(supabaseAccessToken);
-      console.log("saved",  post )
-      await supabase
+      const supabase_client= await supabaseClient(session) 
+
+      await supabase_client
         .from("rave")
         .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: post.id });
     }

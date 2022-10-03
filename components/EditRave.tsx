@@ -11,28 +11,14 @@ import dynamic from "next/dynamic";
 import FocusMenu from "./FocusMenu";
 import Router from "../node_modules/next/router";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
-
-//supabaseClient init
-const supabaseClient = async (supabaseAccessToken) => {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-
-  // set Supabase JWT on the client object, 
-  // so it is sent up with all Supabase requests
-  // supabase.auth.setAuth(supabaseAccessToken);
-  const { user, error } = supabase.auth.setAuth(supabaseAccessToken)
-
-  return supabase;
-};
+import {supabaseClient} from '../utils/supabaseClient'
 
 
 
 
 
 
-export default function EditRave({post}) {
+export default function EditRave({post,user}) {
   const { session } = useSession();
 
   const [raveTitle, setRaveTitle] = useState(post.title);
@@ -43,10 +29,7 @@ export default function EditRave({post}) {
     //update title in supabase  
     setRaveTitle(e.target.value)
   
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
+    const supabase = await supabaseClient(session);
     
     await supabase
       .from("rave")
@@ -57,13 +40,7 @@ export default function EditRave({post}) {
   
   //function to save title
   const publishPost =async (post) => {
-    console.log('publishing post')
-  
-    const supabaseAccessToken = await session.getToken({
-      template: "supabase",
-    });
-    const supabase = await supabaseClient(supabaseAccessToken);
-    
+    const supabase = await supabaseClient(session);
     await supabase
       .from("rave")
       .update({ status: 'published',author_id: session.user.id }).match({ id: post.id });
@@ -80,7 +57,7 @@ export default function EditRave({post}) {
 
   return (
     <div>
-      <FocusMenu handleClick={()=>publishPost(post)} isPublished={post.status=='published'}/>
+      <FocusMenu user={user} handleClick={()=>publishPost(post)} isPublished={post.status=='published'}/>
       <div className="content-center	">
 
         <div className="md:grid md:grid-cols-1 md:gap-6 mx-auto	lg:w-[52rem]">

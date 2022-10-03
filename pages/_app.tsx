@@ -1,4 +1,24 @@
-import { withServerSideAuth } from "@clerk/nextjs/ssr";
+import { WithUser, WithUserProp } from "@clerk/clerk-react";
+
+// type UserStripProps = {
+//   user_name: string;
+// }
+
+// const UserStrip = (props: WithUserProp<UserStripProps>) => {
+//   const { user, user_name } = props;
+//   return (
+//     <>
+//     <h1>{ user_name }</h1>
+//     <div>
+    
+
+//     </div>
+//     </>
+//   );
+// }
+
+// export const UserStripWithUser = withUser(UserStrip);
+
 
 
 
@@ -27,13 +47,18 @@ function MyApp({ Component, pageProps }) {
   // Check if the current route matches a public page
   const isPublicPage = publicPages.includes(pathname);
   
+  
 
 
-  var userButton=<UserButton/>;
+
+
   // If the current route is listed as public, render it directly
   // Otherwise, use Clerk to require authentication
-  pageProps.userButton=userButton;
-  // pageProps.userButton=user;
+  // pageProps.user=user;
+  
+  
+  var userButton = <UserButton showName={true}	/>
+  var ShortUserButton = <UserButton showName={false}	/>
   return getLayout(
     <ClerkProvider>
       {isPublicPage ? (
@@ -41,7 +66,12 @@ function MyApp({ Component, pageProps }) {
       ) : (
         <>
           <SignedIn>
-              <Component {...pageProps} />  
+            <WithUser>
+              {(user) => (
+
+                <Component {...pageProps} user={{...user,userButton,ShortUserButton}}/>  
+              )}
+            </WithUser>
           </SignedIn>
           <SignedOut>
             <RedirectToSignIn />

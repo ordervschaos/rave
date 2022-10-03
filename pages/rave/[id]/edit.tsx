@@ -11,10 +11,10 @@ const supabase = createClient(
 
 
 
-export default function Edit({post}) {
+export default function Edit({post,user}) {
   return (
     <>
-      <EditRave post={post}/>
+      <EditRave user={user} post={post}/>
     </>
   )
 }

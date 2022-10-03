@@ -9,31 +9,37 @@ const supabase = createClient(
 );
 
 
-export default function viewRave({ rave }) {
+export default function viewRave({ post,user }) {
   return (
-    <div className="mt-6 flow-root lg:px-24">
-      <ul role="list" className="divide-y divide-gray-200 px-5">
-        <RaveView key={rave.id} rave={rave} />
-      </ul>
-    </div>
+    <Layout user={user}>
+      <div className="mt-6 flow-root lg:px-24">
+        <ul role="list" className="divide-y divide-gray-200 px-5">
+          <RaveView key={post.id} post={post} />
+        </ul>
+      </div>
+    </Layout>
   )
 }
 
 
-
-viewRave.getLayout = function getLayout(page) {
-  return (
-    <Layout>{page}</Layout>
-  )
-}
 
 
 export async function getStaticProps({ params }) {
-  var rave = await supabase.from("rave").select().eq('id', params.id);
-  rave = rave.data[0]
+  var post = await supabase.from("rave").select().eq('id', params.id);
+  post = post.data[0]
+  var user
+  user=await fetch(`https://api.clerk.dev/v1/users/${post.author_id}`, {
+    headers: {
+      'Authorization': `Bearer ${process.env.CLERK_API_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  user = await user.json()
+  post.author=user
 
   // Pass post data to the page via props
-  return { props: { rave } }
+  return { props: { post } }
 }
 
 export async function getStaticPaths() {

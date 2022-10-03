@@ -24,7 +24,6 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   const supabaseAccessToken = await req.auth.getToken({
     template: "supabase",
   });
-  console.log('supabaseAccessToken',req.auth)
   const supabase = await supabaseClient(supabaseAccessToken);
   const { sessionId } = req.auth;
   console.log("req.auth")

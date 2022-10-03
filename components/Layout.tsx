@@ -26,10 +26,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Layout({children,user_id,userButton}) {
+export default function Layout({children,user}) {
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: true },
-    { name: 'My Raves', href: '/raves/'+user_id, icon: DocumentTextIcon, current: false },
+    { name: 'My Raves', href: '/raves/' +user.id, icon: DocumentTextIcon, current: false },
     { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
     
   ]
@@ -128,14 +128,9 @@ export default function Layout({children,user_id,userButton}) {
                     <a href="#" className="group block flex-shrink-0">
                       <div className="flex items-center">
                         <div>
-                          <img
-                            className="inline-block h-10 w-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                          />
                         </div>
                         <div className="ml-3">
-                          {userButton}
+                          {user.userButton}
                         </div>
                       </div>
                     </a>
@@ -184,7 +179,12 @@ export default function Layout({children,user_id,userButton}) {
             <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
               <a href="#" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
-                {userButton}
+                  <div>
+                    {user.userButton}
+                  </div>
+                  <div className="ml-3">
+
+                  </div>
                 </div>
               </a>
             </div>
