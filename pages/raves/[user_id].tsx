@@ -19,15 +19,9 @@ export default function Home({params,user,posts}) {
 
   return (
     <Layout user={user}>
-      <div className="mt-6 flow-root">
-        <br/>
-        <br/>
-        <br/>
-
-        <h2 className='font-extrabold text-4xl'>{user.firstName} {user.lastName}</h2>
-        <br/>
-        <div className="flex-grow border-t border-gray-200"></div>
-        <ul role="list" className="divide-y divide-gray-200 px-5 w-1/2">
+      <h2 className='mt-12 font-extrabold text-4xl'>{user.firstName} {user.lastName}</h2>
+      <div className="mt-6 max-w-3xl flow-root">
+        <ul role="list" className="px-5">
           {posts && posts.map((rave) => (
             <RaveCard key={rave.id} post={rave} />
           ))}

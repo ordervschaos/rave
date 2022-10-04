@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Blocks from 'editorjs-blocks-react-renderer';
 import { Card } from './Card'
-import BoookmarkButton from './BookmarkButton';
-import ThumbsupButton from './ThumbsupButton';
+import BookmarkButton from './BookmarkButton';
+import LikeButton from './LikeButton';
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -15,12 +15,12 @@ export function formatDate(dateString) {
 
 
 export default function RaveCard({ post }) {
-  try{
-    var review=JSON.parse(post.review)
-    review.blocks=review.blocks.filter((block) => block.type == 'paragraph')
-    post.review=JSON.stringify(review)
-        
-  }catch{
+  try {
+    var review = JSON.parse(post.review)
+    review.blocks = review.blocks.filter((block) => block.type == 'paragraph')
+    post.review = JSON.stringify(review)
+
+  } catch {
     post.review = JSON.stringify({
       version: "2.11.10",
       blocks: [
@@ -35,13 +35,12 @@ export default function RaveCard({ post }) {
   }
   return (
 
-    <div>
-      <Link href={"/rave/"+post.id  } className="sm:flex py-8 " key={post.id} >
-  
-        <Card as="article" className="cursor-pointer py-8">
-            
-        {post.author&&
-          <div className="flex w-full items-center space-x-6 pb-3">
+    <div className='my-3'>
+      {/* <Link href={"/rave/"+post.id  } className=" sm:flex py-8 " key={post.id} > */}
+
+      <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        {post.author &&
+          <div className="flex w-full items-center space-x-6 pb-3 m-3">
             <div className=''>
               <div className="text-base font-medium">
                 <img className="inline-block h-5 w-5 rounded-full" src={post.author.profile_image_url} alt="profile_pic" />
@@ -50,24 +49,27 @@ export default function RaveCard({ post }) {
             </div>
             <div className=''>
               <dt className="sr-only">Published on</dt>
-              
+
               <dd className="text-base text-xs text-gray-300 font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>
             </div>
           </div>
         }
-          <Card.Title href={`/rave/${post.id}`}>
-            {post.title}
-          </Card.Title>
-          
-          {/* <Card.Eyebrow as="time" dateTime={post.created_at} decorate>
-            {formatDate(post.created_at.split('T')[0])}
-          </Card.Eyebrow> */}
-          <Card.Description>            
+        <div className="p-5">
+          <Link className="" href={"/rave/"+post.id}>
+            <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{post.title}</h5>
+          </Link>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             <Blocks data={JSON.parse(post.review)} />
-          </Card.Description>
-        </Card>
-      </Link>
-        <BoookmarkButton post_id={post.id}/>
+          </p>
+          <LikeButton post_id={post.id} />
+          <div className='float-right'>
+            <BookmarkButton post_id={post.id} />
+          </div>
+            
+        </div>
+      </div>
+      {/* </Link> */}
+
     </div>
 
   )

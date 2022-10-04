@@ -5,6 +5,7 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline'
 import BoookmarkButton from './BookmarkButton';
+import LikeButton from './LikeButton';
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -55,19 +56,28 @@ export default function RaveView({ post }) {
           <dd className="text-base text-xs text-gray-300 font-sans font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>
         </div>
       </div>
-      {session &&
-      <div className='float-right flex-shrink-0 h-6 w-6'>
-        <BoookmarkButton  post_id={post.id}/>
-      </div>
-      }
-      {session && session.user && post.author_id==session.user.id && 
-      <Link href={"/rave/"+post.id+"/edit"  } className="sm:flex py-8 " key={post.id} >
-        <PencilSquareIcon
-          className='cursor-pointer float-right text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6'
-          aria-hidden="true"
-        />
-      </Link>
-      }
+      
+        {session &&
+        <div className='flex flex-row'>
+          <div className=''>
+            <BoookmarkButton post_id={post.id}/>
+          </div>
+          <div className=''>
+            <LikeButton  post_id={post.id}/>
+          </div>
+        </div>
+        }
+        {session && session.user && post.author_id==session.user.id && 
+        <div className='float-right'>
+          <Link href={"/rave/"+post.id+"/edit"  } className="sm:flex py-8 " key={post.id} >
+            <PencilSquareIcon
+              className='cursor-pointer text-gray-400 group-hover:text-gray-500   h-5 w-5'
+              aria-hidden="true"
+            />
+          </Link>
+        </div>
+        }
+      
       <h1 className='text-4xl mb-12 '>{post.title}</h1>
 
 

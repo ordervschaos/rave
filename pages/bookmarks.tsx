@@ -7,12 +7,14 @@ import Layout from "../components/Layout";
 export default function userBookmarks({ user,posts }) {
   return (
     <Layout user={user}>
-      <h2 className='font-extrabold text-4xl'>Bookmarks</h2>
+      <h2 className='mt-12 font-extrabold text-4xl'>Bookmarks</h2>
+      <div className="mt-6 max-w-3xl flow-root">
 
-      {posts.map((post) => (
-        <RaveCard key={post.id} post={post} />
+        {posts.map((post) => (
+          <RaveCard key={post.id} post={post} />
 
-      ))}
+        ))}
+      </div>
     </Layout>
   );
 }
@@ -27,10 +29,8 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   }).order('created_at', { ascending: false });
   bookmarks = bookmarks.data
   
-
-  var posts = await supabase.from("rave").select().match({
-    id: bookmarks.map((bookmark) => bookmark.post_id),
-  }).order('created_at', { ascending: false });
+  // bookmarks.map((bookmark) => bookmark.post_id)
+  var posts = await supabase.from("rave").select().filter("id","in",`(${bookmarks.map((bookmark) => bookmark.post_id).join(',')})`).order('created_at', { ascending: false });
   console.log("posts-0-0000000=0======")
   console.log(posts)
   posts = posts.data

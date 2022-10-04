@@ -16,8 +16,8 @@ export default function Home({userButton,user,posts}) {
 
   return (
     <Layout user={user}>
-      <div className="mt-6 flow-root">
-        <ul role="list" className="divide-y divide-gray-200 px-5 lg:w-1/2">
+      <div className="mt-6 max-w-3xl flow-root">
+        <ul role="list" className="px-5">
           {posts && posts.map((post) => (
             <RaveCard key={post.id} post={post} />
           ))}
