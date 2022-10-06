@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useSession } from "@clerk/nextjs";
 import Blocks from 'editorjs-blocks-react-renderer';
+import Comments from './Comments'
 import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline'
@@ -86,6 +87,8 @@ export default function RaveView({ post }) {
     </Card.Eyebrow> */}
     
       <Blocks data={JSON.parse(post.review)} />
+
+      <Comments post_id={post.id} comments_list={post.comments}/>
     </div>
         
   )
