@@ -27,8 +27,11 @@
     "@editorjs/simple-image": "^1.4.1",
     "@editorjs/table": "^2.0.4",
     "@editorjs/warning": "^1.2.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
+    "@mui/material": "^5.10.8",
     "@supabase/supabase-js": "^1.0.0-rc.10",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.7",
@@ -39,7 +42,8 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-editor-js": "^2.1.0"
+    "react-editor-js": "^2.1.0",
+    "react-select": "^5.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.18",

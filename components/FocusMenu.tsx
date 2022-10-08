@@ -135,7 +135,12 @@ export default function FocusMenu({handleClick,isPublished,user}) {
           >
             Publish
           </button>}
-          {isPublished && <button disabled className='disabled:opacity-50 disabled:cursor-not-allowed mr-3'>Published</button>}
+          {isPublished && <button onClick={handleClick} 
+            type="button"
+            className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Update
+          </button>}
               
             <button
               type="button"
