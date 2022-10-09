@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Link from "../node_modules/next/link";
 
 var statistics = [
@@ -25,23 +26,39 @@ var statistics = [
 ]
 
 export default function Main() {
+  const ref = useRef(null);
+
+  const handleClick = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth',
+    block: 'start'});
+
+  };
+
   return (
     <section className="text-gray-600 body-font">
       <div className=" pt-48 max-w-7xl  lg:py-24  md:py-20 mx-auto flex  px-5  md:flex-row flex-col items-center">
-        <div className="sm:w-full lg:flex-grow md:w-full md:ml-24 pt-6 flex flex-col md:items-start md:text-left mb-40 items-center text-center">
-          <h1 className="mb-5 sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-900">
+        <div  className="sm:w-full lg:flex-grow md:w-full md:ml-24 pt-6 flex flex-col md:items-start md:text-left mb-40 items-center text-center">
+          <h1  className="mb-5 sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-900">
             A place for sharing and discovering <b>greatness</b>
           </h1>
           <p className="mb-4 xl:w-3/4 text-gray-600 text-lg">
             We are here to help you find the gems in it.
           </p>
           <div className="flex justify-center">
-            <a
-              className="inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-900"
-              href="https://github.com/r1/nine4-2/"
+            <a 
+              className="cursor-pointer inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-900"
+              onClick={handleClick}
             >
-              <span className="justify-center">Find out more</span>
+              <a  className="justify-center">Find out more</a>
             </a>
+            <Link href="/raves">
+
+              <a
+                className="inline-flex items-center px-5 py-3 mt-2 font-medium text-gray-400 transition duration-500 ease-in-out transform bg-transparent border border-gray-400 ml-3 rounded-lg bg-white-400"
+              >
+                <a  className="justify-center">Get started</a>
+              </a>
+            </Link>
           </div>
         </div>
         <div className="hidden lg:inline-block xl:mr-44 sm:mr-0  mb-0 lg:mb-0 mr-48 ">
@@ -52,7 +69,7 @@ export default function Main() {
           ></img>
         </div>
       </div>
-      <section className="mx-auto">
+      <section className="mx-auto scroll-my-36	" ref={ref}   >
         <div className="container px-5 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
             <h1 className="mb-8 text-6xl Avenir font-semibold text-gray-900">
