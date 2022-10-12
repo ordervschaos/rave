@@ -16,14 +16,18 @@ export default function TabMenu({selectedTab}) {
   var tabs:Tab[]=[
     {label:"All",value:"",},
     {label:"Books",value:"book",},
-    // {label:"Movies",value:"movie",}
-    // ,{label:"Music",value:"music",}
-    // ,{label:"Podcasts",value:"podcast",}
-    // ,{label:"TV Shows",value:"tv",}
-    // ,{label:"Video Games",value:"game",}
-    // ,{label:"Websites",value:"website",},
-    // {label:"Apps",value:"app",},
-    // {label:"Audiobooks",value:"audiobook",},
+    {label:"Movies",value:"movie",}
+    ,{label:"Music",value:"music",}
+    ,{label:"Podcasts",value:"podcast",}
+    ,{label:"TV Shows",value:"tv",},
+    {label:"Movies",value:"movie",}
+    ,{label:"Music",value:"music",}
+    ,{label:"Podcasts",value:"podcast",}
+    ,{label:"TV Shows",value:"tv",}
+    ,{label:"Video Games",value:"game",}
+    ,{label:"Websites",value:"website",},
+    {label:"Apps",value:"app",},
+    {label:"Audiobooks",value:"audiobook",},
     {label:"Youtube Channels",value:"youtube_channel",},
     {label:"Youtube Videos",value:"youtube_video",},
 
@@ -59,7 +63,7 @@ export default function TabMenu({selectedTab}) {
       <div className="sm:flex sm:items-baseline">
         <h3 className="text-lg font-medium leading-6 text-gray-900"></h3>
         <div className="mt-4 sm:mt-0 sm:ml-10">
-          <nav className="-mb-px flex space-x-8">
+          <nav className="-mb-px flex space-x-8 overflow-x-auto max-w-2xl	">
             {tabs.map((tab) => (
               <a
                 key={tab.value}
