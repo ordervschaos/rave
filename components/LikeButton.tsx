@@ -1,4 +1,4 @@
-import { HandThumbUpIcon } from '@heroicons/react/20/solid'
+import { HeartIcon } from '@heroicons/react/20/solid'
 // Get icon nams from: https://unpkg.com/browse/@heroicons/react@2.0.11/24/outline/
 import { createClient } from "@supabase/supabase-js";
 import { useSession } from "@clerk/nextjs";
@@ -66,9 +66,9 @@ export default function LikeButton({post_id}) {
 
       <button
         type="button"
-        className="relative inline-flex items-center rounded  bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10"
+        className="relative inline-flex items-center rounded  bg-white  text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10"
       >
-        <HandThumbUpIcon onClick={isLiked?removeLike:addLike} className= {`-ml-1 mr-2 h-5 w-5 ${isLiked?"text-pink-400":"text-gray-400"}`} aria-hidden="true" />
+        <HeartIcon onClick={isLiked?removeLike:addLike} className= {`mr-2 h-5 w-5 ${isLiked?"text-pink-400":"text-gray-400"}`} aria-hidden="true" />
       {likeCount}
       </button>
      

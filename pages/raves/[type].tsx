@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
 import { useSession } from "@clerk/nextjs";
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import { createClient } from "@supabase/supabase-js";
-import RaveCard from '../components/RaveCard';
+import RaveCard from '../../components/RaveCard';
 import _ from 'lodash'
-import FilterMenu from '../components/FilterMenu';
-import TabMenu from '../components/TabMenu';
+import FilterMenu from '../../components/FilterMenu';
+import TabMenu from '../../components/TabMenu';
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -31,8 +31,7 @@ export default function Home({user,posts}) {
   return (
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
-      <TabMenu selectedTab={params.type}/>
-        <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+      <TabMenu selectedTab={params.type}/>        <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
         <ul role="list" className="px-5">
           {postsList && postsList.map((post) => (
             <RaveCard key={post.id} post={post} />
@@ -46,7 +45,7 @@ export default function Home({user,posts}) {
 export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get posts
   // var post = await supabase.from("rave").select().eq('id', params.id);
-  var posts = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
+  var posts = await supabase.from("rave").select().eq('type->>value',params.type).eq('status','published').order('created_at', { ascending: false });
   posts = posts.data
 
   var user_ids=posts.map((post)=>post.author_id)

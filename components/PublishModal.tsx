@@ -51,7 +51,7 @@ export default function Example({ open, setOpen, post }) {
   const { session } = useSession()
 
   const [link, setLink] = useState(post.link||"")
-  const [raveType, setRaveType] = useState(post.type?JSON.parse(post.type):{
+  const [raveType, setRaveType] = useState(post.type?post.type:{
     value: '',
     label: '',
   })
