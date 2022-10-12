@@ -3,6 +3,7 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import { Card } from './Card'
 import BookmarkButton from './BookmarkButton';
 import LikeButton from './LikeButton';
+import ShareButton from './ShareButton';
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -49,8 +50,11 @@ export default function RaveCard({ post }) {
             </div>
             <div className=''>
               <dt className="sr-only">Published on</dt>
-
               <dd className="text-base text-xs text-gray-300 font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>
+            </div>
+            <div className='flex-grow'></div>
+            <div className=''>
+              <ShareButton post_id={post.id}  />
             </div>
           </div>
         }

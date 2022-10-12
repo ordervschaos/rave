@@ -1,3 +1,7 @@
+
+
+
+
 export default  function RaveLogo() {
   return (
     <div className="flex flex-shrink-0 items-center px-4">
@@ -9,6 +13,7 @@ export default  function RaveLogo() {
           RAVVE
         </h1>
       </a>
+     
     </div>
   )
 }
