@@ -31,7 +31,7 @@ export default function LikeButton({post_id}) {
     await supabase_client.from("like").delete().match({ post_id:post_id,user_id: session.user.id });
   }
   const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState();
+  const [likeCount, setLikeCount] = useState(0);
   useEffect(() => {
     const fetchLike = async () => {
       const supabase_client=await  supabaseClient(session)

@@ -89,8 +89,8 @@ export default function Example({ open, setOpen, post }) {
   };
 
   var handleTypeChange = (
-    newValue: OnChangeValue,
-    actionMeta: ActionMeta
+    newValue,
+    actionMeta
   ) => {
     console.group('Value Changed');
     console.log(newValue);
@@ -204,7 +204,7 @@ export default function Example({ open, setOpen, post }) {
                               
                                 value={raveType}
                                 isMulti={false}
-                                onChange={handleTypeChange}
+                                onChange={(e)=>handleTypeChange(e,'change')}
                                 onInputChange={handleTypeInputChange}
                                 options={typeOptions}
                                 

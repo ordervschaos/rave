@@ -21,11 +21,10 @@ export default function Comments({post_id,comments_list}) {
 
   const [comment, setComment] = useState<string>("");
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const commentValue = event.target.value;
+  const onChange = (value) => {
+    const commentValue = value;
     setComment(commentValue);
   };
-  
   
   const addComment = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,7 +62,7 @@ export default function Comments({post_id,comments_list}) {
           <form className="w-full max-w-4xl bg-white rounded-lg text-xs px-4 pt-2" onSubmit={addComment}>
               <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-full mb-2 mt-2">
-                <textarea onChange={onChange}
+                <textarea onChange={(e)=>onChange(e.target.value)}
                   id="comment"
                   name="comment"
                   className="py-4 text-xs bg-white rounded-lg border border-gray-300 leading-normal resize-none w-full h-24  font-medium placeholder-gray-700 focus:outline-none focus:bg-white" 
@@ -74,7 +73,7 @@ export default function Comments({post_id,comments_list}) {
                 </div>
                 <div  className="w-full md:w-full flex items-start md:w-full ">
                     <div className="">
-                      <input disabled={comment?false:true} type='submit' className="disabled:bg-gray-300 h-7 bg-indigo-500  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-gray-100" value='Respond'/>
+                      <input disabled={comment?false:true} type='submit' className="disabled:bg-gray-300 h-7 bg-indigo-500  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-indigo-800" value='Respond'/>
                     </div>
                 </div>
               </div>

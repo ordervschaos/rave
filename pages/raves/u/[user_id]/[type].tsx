@@ -54,20 +54,20 @@ export default function Home({params,user,posts}) {
 
 export async function getServerSideProps({ params }) {
   console.log(params)
-  var posts = await supabase.from("rave").select('*').eq('type->>value',params.type).match({status:'published',author_id:params.user_id}).order('created_at', { ascending: false });
+  var posts_res = await supabase.from("rave").select('*').eq('type->>value',params.type).match({status:'published',author_id:params.user_id}).order('created_at', { ascending: false });
   console.log(params)
   console.log(posts)
-  posts = posts.data
+  var posts = posts_res.data
 
 
-  var user
-  user=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {
+
+  var user_res=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {
     headers: {
       'Authorization': `Bearer ${process.env.CLERK_API_KEY}`,
       'Content-Type': 'application/json'
     }
   });
-  user = await user.json()
+  var user = await user_res.json()
 
 
   return {

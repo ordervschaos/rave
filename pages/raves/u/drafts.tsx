@@ -62,11 +62,11 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   const { sessionId } = req.auth;
   console.log("req.auth.user")
   console.log(req.auth)
-  var posts = await supabase.from("rave").select().match({
+  var posts_res = await supabase.from("rave").select().match({
     author_id: req.auth.userId,
     status:'draft'
   }).order('created_at', { ascending: false });
-  posts = posts.data
+  var posts = posts_res.data
 
   posts=posts.filter((post)=>{
     if(post.title || (post.review&&post.review.length > 0))

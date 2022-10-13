@@ -34,8 +34,8 @@ export default function AddRaveForm() {
   console.log()
 
   const [newRaveReview, setNewRaveReview] = useState(JSON.stringify(review_data));
-  const [newRaveLink, setNewRaveLink] = useState("test");
-  const [selectedType, setSelectedType] = useState('Book')
+  const [newRaveLink, setNewRaveLink] = useState();
+  const [selectedType, setSelectedType] = useState()
 
   
 

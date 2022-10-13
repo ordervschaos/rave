@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Link from "../node_modules/next/link";
-import Image from "next/Image";
+import Image from "next/image";
 
 var statistics = [
   {

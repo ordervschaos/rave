@@ -108,7 +108,7 @@ export default function RaveCard({ post }) {
 
             <div className="flex flex-wrap -m-1">
               {post.tags&&post.tags.map((tag) => (
-                <div className="m-1">
+                <div key={tag.value} className="m-1">
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{tag.value}</span>
                 </div>
               ))}

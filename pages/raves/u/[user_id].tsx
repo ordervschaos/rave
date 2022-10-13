@@ -57,11 +57,11 @@ export default function Home({params,user,posts}) {
 
 export async function getServerSideProps({ params }) {
  
-  var posts = await supabase.from("rave").select().match({
+  var posts_res = await supabase.from("rave").select().match({
     author_id: params.user_id,
     status:'published'
   }).order('created_at', { ascending: false });
-  posts = posts.data
+  var posts = posts_res.data
 
   var user
   user=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {

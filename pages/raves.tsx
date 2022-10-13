@@ -46,8 +46,8 @@ export default function Home({user,posts}) {
 export async function getServerSideProps({ params }) {
   // Call an external API endpoint to get posts
   // var post = await supabase.from("rave").select().eq('id', params.id);
-  var posts = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
-  posts = posts.data
+  var posts_res = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
+  var posts = posts_res.data
 
   var user_ids=posts.map((post)=>post.author_id)
   var users

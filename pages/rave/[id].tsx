@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import Layout from '../../../components/Layout'
-import RaveView from '../../../components/RaveView';
+import Layout from '../../components/Layout'
+import RaveView from '../../components/RaveView';
 import _ from 'lodash'
 
 const supabase = createClient(
@@ -24,9 +24,9 @@ export default function viewRave({ post,user }) {
 
 
 
-export async function getStaticProps({ params }) {
-  var post = await supabase.from("rave").select().eq('id', params.id);
-  post = post.data[0]
+export async function getServerSideProps({ params }) {
+  var post_res = await supabase.from("rave").select().eq('id', params.id);
+  var post = post_res.data[0]
   var user
   user=await fetch(`https://api.clerk.dev/v1/users/${post.author_id}`, {
     headers: {
@@ -69,17 +69,18 @@ export async function getStaticProps({ params }) {
   return { props: { post } }
 }
 
-export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
-  var raves = await supabase.from("rave").select();
-  raves = raves.data
+// export async function getStaticPaths() {
+//   // Call an external API endpoint to get posts
+//   var raves_res = await supabase.from("rave").select();
+//   var raves = raves_res.data
 
-  // Get the paths we want to pre-render based on posts
-  const paths = raves.map((rave) => ({
-    params: { id: rave.id.toString() },
-  }))
+//   // Get the paths we want to pre-render based on posts
+//   const paths = raves.map((rave) => ({
+//     params: { id: rave.id.toString() },
+//   }))
+//   console.log("paths***&^*&%^&^%*^%$^&*%^^&%$%^",paths)
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: true }
-}
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths, fallback: true }
+// }

@@ -24,16 +24,16 @@ export default function userBookmarks({ user,posts }) {
 export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
   const supabase = await supabaseServerSide(req.auth);
 
-  var bookmarks= await supabase.from("bookmark").select().match({
+  var bookmarks_res= await supabase.from("bookmark").select().match({
     user_id: req.auth.userId,
   }).order('created_at', { ascending: false });
-  bookmarks = bookmarks.data
+  var bookmarks = bookmarks_res.data
   
   // bookmarks.map((bookmark) => bookmark.post_id)
-  var posts = await supabase.from("rave").select().filter("id","in",`(${bookmarks.map((bookmark) => bookmark.post_id).join(',')})`).order('created_at', { ascending: false });
+  var posts_res = await supabase.from("rave").select().filter("id","in",`(${bookmarks.map((bookmark) => bookmark.post_id).join(',')})`).order('created_at', { ascending: false });
   console.log("posts-0-0000000=0======")
   console.log(posts)
-  posts = posts.data
+  var posts = posts_res.data
 
   var user_ids=posts.map((post)=>post.author_id)
   var users
