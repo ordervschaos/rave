@@ -40,14 +40,16 @@ export default function RaveCard({ post }) {
       {/* <Link href={"/rave/"+post.id  } className=" sm:flex py-8 " key={post.id} > */}
 
       <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        {post.author &&
+        {post &&
           <div className="flex w-full items-center space-x-1  p-3">
+            {post.author &&
             <div className=''>
               <div className="text-base font-medium">
                 <img className="inline-block h-5 w-5 rounded-full" src={post.author.profile_image_url} alt="profile_pic" />
                 <span className="text-gray-800 font-light text-xs ml-2">{post.author.first_name} {post.author.last_name}</span>
               </div>
             </div>
+            }
             <div className=''>
               <dt className="sr-only">Published on</dt>
               <dd className="text-base text-xs text-gray-300 font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>

@@ -182,7 +182,7 @@ export default function Main() {
             Short answer:
               <div className="underline">
                 <Link href="https://hbr.org/2002/11/the-flaw-of-averages">
-                   Average is a flawed metric
+                   Popularity is a flawed metric
                 </Link>
               </div>
             </h1>

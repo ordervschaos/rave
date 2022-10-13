@@ -21,12 +21,13 @@ import {
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
-export default function ShareButton({ post_id }) {
+export default function ShareButton() {
   const [showShareMenu, setShowShareMenu] = useState(false)
-  var post_url = window.location.hostname + "/rave/" + post_id
+  var post_url = window.location.href
 
-  var post_body = "Check out this recommendation on Ravve:"
-  var post_subject = "Check out this recommendation"
+  var post_body = `Hello there,
+  Check out my recommendation on Ravve:`
+  var post_subject = "Check out my curated list of awesomeness"
   return (
     <Menu as="div" className="relative text-left">
       <div>

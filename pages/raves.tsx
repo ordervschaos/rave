@@ -31,7 +31,7 @@ export default function Home({user,posts}) {
   return (
     <Layout user={user}>
       <div className="mt-6 max-w-3xl flow-root">
-      <TabMenu selectedTab={params.type}/>
+      <TabMenu selectedTab={""}/>
         <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
         <ul role="list" className="px-5">
           {postsList && postsList.map((post) => (
@@ -71,8 +71,7 @@ export async function getServerSideProps({ params }) {
   // will receive `posts` as a prop at build time
   return {
     props: {
-      posts,
-      params
+      posts
     },
   }
 }

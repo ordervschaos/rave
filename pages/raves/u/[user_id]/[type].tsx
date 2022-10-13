@@ -6,6 +6,7 @@ import RaveCard from '../../../../components/RaveCard';
 import _ from 'lodash'
 import FilterMenu from '../../../../components/FilterMenu';
 import TabMenu from '../../../../components/TabMenu';
+import ShareUserRavesButton from '../../../../components/ShareUserRavesButton';
 
 
 const supabase = createClient(
@@ -32,7 +33,11 @@ export default function Home({params,user,posts}) {
 
   return (
     <Layout user={user}>
-      <h2 className='mt-12 font-extrabold text-4xl'>{user.firstName} {user.lastName}</h2>
+          <div className='flex max-w-3xl justify-between items-center'>
+        <h2 className='mt-12 font-extrabold text-4xl'>{user.firstName} {user.lastName}</h2>
+        <div className='flex-grow'></div>
+        <ShareUserRavesButton/>
+      </div>
       <div className="mt-6 max-w-3xl flow-root">
       <TabMenu selectedTab={params.type}/>
       <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />

@@ -21,12 +21,17 @@ function classNames(...classes) {
 
 export default function Layout({children,user}) {
   const navigation = [
-    { name: 'Home', href: '/raves', icon: HomeIcon, current: true },
+    { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
     { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },
     { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
     { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
     
   ]
+  navigation.forEach((item) => {
+    if (window.location.pathname == item.href) {
+      item.current = true
+    }
+  })
   
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
