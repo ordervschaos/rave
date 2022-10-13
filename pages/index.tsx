@@ -10,9 +10,9 @@ export default function Home() {
       <NextSeo
         title="Home: nine4"
         description="Welcome to nine4 homepage."
-        canonical="https://nine4-2.vercel.app/"
+        canonical="https://www.ravve.app/"
         openGraph={{
-          url: "https://nine4-2.vercel.app/",
+          url: "https://www.ravve.app/",
         }}
       />
       <Head>

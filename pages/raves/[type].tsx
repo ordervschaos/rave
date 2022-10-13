@@ -26,7 +26,7 @@ export default function Home({user,posts,params}) {
     }else{
       setPostsList(posts)
     }
-  },[selectedTags])
+  },[selectedTags,posts])
 
   return (
     <Layout user={user}>

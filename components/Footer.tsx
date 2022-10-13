@@ -1,3 +1,4 @@
+import Link from 'next/link'
 export default function Footer() {
   return (
     <footer className="pb-4 hidden">
@@ -9,36 +10,36 @@ export default function Footer() {
             </h2>
             <ul className="space-y-4 text-md">
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Jobs
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Merch
-                </a>
+                </Link>
               </li>{" "}
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Brand
-                </a>
+                </Link>
               </li>{" "}
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Meetups
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -48,28 +49,28 @@ export default function Footer() {
             </h2>
             <ul className="space-y-4">
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   News
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Press
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -79,36 +80,36 @@ export default function Footer() {
             </h2>
             <ul className="space-y-4">
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Hosting
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Domains
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Security
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   SSL
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -118,28 +119,28 @@ export default function Footer() {
             </h2>
             <ul className="space-y-4">
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Twitter
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 text-2xl"
                   href="/"
                 >
                   Facebook
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="hover:text-gray-900 transition-colors duration-200 font-semibold text-2xl"
                   href="/"
                 >
                   Instagram
-                </a>
+                </Link>
               </li>
             </ul>
           </li>
@@ -147,53 +148,53 @@ export default function Footer() {
         <div className="flex flex-col-reverse justify-between pt-5 pb-4 border-t lg:flex-row bg-top border-black">
           <ul className="flex flex-col space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Terms of Service
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Ad Choices
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Cookie Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold"
               >
                 Partners
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
-            <a
+            <Link
               href="/"
               className="text-md text-black transition-colors duration-300 hover:text-deep-purple-accent-400 font-semibold tracking-tight"
             >
               © 2021 Company Inc.
-            </a>
+            </Link>
           </ul>
         </div>
       </div>

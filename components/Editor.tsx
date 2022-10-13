@@ -35,7 +35,8 @@ export default function Editor({ post }) {
     }
 
 
-  }, [])
+  }, [session,post.id])
+  
 
 
 

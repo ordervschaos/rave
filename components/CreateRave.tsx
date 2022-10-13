@@ -68,7 +68,7 @@ export default function AddRaveForm() {
                   <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                     I found something to rave about
                   </label>
-                  <SuggestiveDropdown rave_types={rave_types} selectedType={selectedType} setSelectedType={setSelectedType} />
+
                 </div>
               </div>
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">

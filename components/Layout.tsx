@@ -21,9 +21,10 @@ function classNames(...classes) {
 
 export default function Layout({children,user}) {
   const navigation = [
+    { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false,
+    additionalClasses: 'rounded bg-gray-800 text-gray-100 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
     { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
     { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },
-    { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
     { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
     
   ]
@@ -70,7 +71,7 @@ export default function Layout({children,user}) {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
+                <Dialog.Panel className="relative flex w-full max-w-max	flex-1 flex-col bg-white">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -102,7 +103,7 @@ export default function Layout({children,user}) {
                             item.current
                               ? 'bg-gray-100 text-gray-900'
                               : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'+item.additionalClasses
                           )}
                         >
                           <item.icon
@@ -150,7 +151,7 @@ export default function Layout({children,user}) {
                     href={item.href}
                     className={classNames(
                       item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md' + item.additionalClasses
                     )}
                   >
                     <item.icon

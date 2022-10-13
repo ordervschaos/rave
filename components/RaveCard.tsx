@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import Blocks from 'editorjs-blocks-react-renderer';
+import Link from 'next/link'
+import Image from 'next/image'
 import { Card } from './Card'
 import BookmarkButton from './BookmarkButton';
 import LikeButton from './LikeButton';
@@ -47,8 +48,10 @@ export default function RaveCard({ post }) {
           <div className="flex w-full items-center space-x-1  p-3">
             {post.author &&
             <div className=''>
-              <div className="text-base font-medium">
-                <img className="inline-block h-5 w-5 rounded-full" src={post.author.profile_image_url} alt="profile_pic" />
+              <div className="">
+                <div className="inline-block " >
+                  <Image  src={post.author.profile_image_url} alt="profile_pic" width={18} height={18} className="rounded-full" />
+                </div>
                 <span className="text-gray-800 font-light text-xs ml-2">{post.author.first_name} {post.author.last_name}</span>
               </div>
             </div>
@@ -60,10 +63,10 @@ export default function RaveCard({ post }) {
             <div className='flex-grow'></div>
             {post.status!='draft' &&
             <div>
-              <div className=''>
+              <div className='inline-block'>
                 <ShareButton post_id={post.id}  />
               </div>
-              <div className=''>
+              <div className='inline-block'>
                 <BookmarkButton post_id={post.id} />
               </div>
             </div>

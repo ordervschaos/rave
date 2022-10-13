@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-
+import Link from 'next/link'
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -135,9 +135,9 @@ export default function FocusMenu({handleClick,isPublished,user}) {
         </button>
         <div className="flex flex-1 items-center px-4">
           <div className="flex flex-1">
-            <a href='/raves'>
+            <Link href='/raves'>
               <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
           {!isPublished && <button onClick={handleClick} 

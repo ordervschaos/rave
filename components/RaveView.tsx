@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useSession } from "@clerk/nextjs";
 import Blocks from 'editorjs-blocks-react-renderer';
 import Comments from './Comments'
@@ -49,6 +50,9 @@ export default function RaveView({ post }) {
     
         <div className=''>
           <div className="text-base font-medium">
+            <div className="inline-block h-5 w-5 rounded-full" >
+              <Image src={post.author.profile_image_url} alt="profile_pic" width={30} height={30} className="rounded-full" />
+            </div>
             <img className="inline-block h-5 w-5 rounded-full" src={post.author.profile_image_url} alt="profile_pic" />
             <span className="text-gray-800 font-light font-sans text-xs ml-2">{post.author.first_name} {post.author.last_name}</span>
           </div>
@@ -86,7 +90,7 @@ export default function RaveView({ post }) {
 
         {post.link &&
           <div className='mb-6'>
-            <a href={post.link} target='_blank' className='flex items-center space-x-2'>
+            <a href={post.link} target='_blank' rel='nonreferrer' className='flex items-center space-x-2'>
               <LinkIcon className='h-5 w-5 text-gray-400' />
               <span className='text-gray-400 font-light'>{post.link}</span>
             </a>

@@ -7,7 +7,7 @@ import { BookmarkIcon } from '@heroicons/react/20/solid'
 // Get icon nams from: https://unpkg.com/browse/@heroicons/react@2.0.11/24/outline/
 import { createClient } from "@supabase/supabase-js";
 import { useSession } from "@clerk/nextjs";
-
+import Image from  'next/image'
 
 
 const supabase = createClient(
@@ -32,7 +32,10 @@ export default function Comments({comments,setComments}) {
         {comments.map((comment) => (
           <div key={comment.id} className="border rounded-md p-4">
              <div className="text-base font-medium">
-                <img className="inline-block h-5 w-5 rounded-full" src={comment.author.profile_image_url} alt="profile_pic" />
+                <div className="inline-block h-5 w-5 rounded-full">
+                  <Image src={comment.author.profile_image_url}  width={40} height={40} className="rounded-full" />
+                </div>
+
                 <span className="text-gray-800 font-light text-xs ml-2">{comment.author.first_name} {comment.author.last_name}</span>
               </div>
             <p className="font-light text-xs mt-2 whitespace-pre	">{comment.comment_text}</p>

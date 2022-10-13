@@ -45,7 +45,7 @@ export default function BoookmarkButton({post_id}) {
       }
     };
     fetchBookmark();
-  }, []);
+  }, [post_id,session]);
 
     
 

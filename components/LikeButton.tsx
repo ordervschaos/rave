@@ -58,7 +58,7 @@ export default function LikeButton({post_id}) {
     };
     countLikes()
     fetchLike();
-  }, []);
+  }, [post_id]);
 
     
 
