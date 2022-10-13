@@ -10,7 +10,6 @@ import {
 import BoookmarkButton from './BookmarkButton';
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
-import Clerk from '@clerk/clerk-js';
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
