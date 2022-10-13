@@ -4,9 +4,11 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import Comments from './Comments'
 import {
   PencilSquareIcon,
+  LinkIcon,
 } from '@heroicons/react/24/outline'
 import BoookmarkButton from './BookmarkButton';
 import LikeButton from './LikeButton';
+import ShareButton from './ShareButton';
 
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -57,37 +59,58 @@ export default function RaveView({ post }) {
           <dd className="text-base text-xs text-gray-300 font-sans font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>
         </div>
       </div>
-      
-        {session &&
-        <div className='flex flex-row'>
-          <div className=''>
-            <BoookmarkButton post_id={post.id}/>
-          </div>
-          <div className=''>
-            <LikeButton  post_id={post.id}/>
-          </div>
+      {/* action buttons row */}
+      <div className='flex items-center space-x-2 mb-3'>
+     
+        
+        <div className='flex-grow'></div>
+        <div className=''>
+          <ShareButton post_id={post.id}  />
         </div>
+        {session && session.userId == post.author.id &&
+
+          <div className=''>
+            <Link href={"/rave/edit/" + post.id}>
+              <a className="text-gray-400 hover:text-gray-500">
+                <span className="sr-only">Edit</span>
+                <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </Link>
+          </div>
         }
-        {session && session.user && post.author_id==session.user.id && 
-        <div className='float-right'>
-          <Link href={"/rave/"+post.id+"/edit"  } className="sm:flex py-8 " key={post.id} >
-            <PencilSquareIcon
-              className='cursor-pointer text-gray-400 group-hover:text-gray-500   h-5 w-5'
-              aria-hidden="true"
-            />
-          </Link>
-        </div>
-        }
+      </div>
+
+        
       
       <h1 className='text-4xl mb-12 '>{post.title}</h1>
 
-
+        {post.link &&
+          <div className='mb-6'>
+            <a href={post.link} target='_blank' className='flex items-center space-x-2'>
+              <LinkIcon className='h-5 w-5 text-gray-400' />
+              <span className='text-gray-400 font-light'>{post.link}</span>
+            </a>
+          </div>
+        }
     {/* <Card.Eyebrow as="time" dateTime={post.created_at} decorate>
       {formatDate(post.created_at.split('T')[0])}
     </Card.Eyebrow> */}
     
       <Blocks data={JSON.parse(post.review)} />
+      
+      <div className='mt-24 flex items-center space-x-2 mb-3'>
+       
+       <div className=''>
+       <LikeButton post_id={post.id} />
+       </div>
+       <div className='flex-grow'></div>
+       <div className=''>
+         <BoookmarkButton post_id={post.id} />
+       </div>
 
+     </div>
+    {/* full width divider */}
+    <div className='w-full h-0.5 bg-gray-200  mb-12'></div>
       <Comments post_id={post.id} comments_list={post.comments}/>
     </div>
         

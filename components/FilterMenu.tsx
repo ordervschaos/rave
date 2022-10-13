@@ -21,6 +21,8 @@ export default function FilterMenu({tags,selectedTags,setSelectedTags}) {
   
   return (
     // filter tag chips
+    <div>
+    {tags && tags.length>2 &&
     <div className="flex flex-wrap items-center justify-center w-full px-4 py-2 mx-auto my-2 bg-white rounded-lg  dark:bg-gray-800">
       {tags.map((tag) => (
         <button
@@ -34,6 +36,8 @@ export default function FilterMenu({tags,selectedTags,setSelectedTags}) {
           {tag}
         </button>
       ))}
+    </div>
+    }
     </div>
 
   )

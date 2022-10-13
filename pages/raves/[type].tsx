@@ -13,7 +13,7 @@ const supabase = createClient(
 );
 
 
-export default function Home({user,posts}) {
+export default function Home({user,posts,params}) {
  
   const [selectedTags, setSelectedTags] = useState([]);
   const [postsList, setPostsList] = useState(posts);

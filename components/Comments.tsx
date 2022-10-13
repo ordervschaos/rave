@@ -58,7 +58,7 @@ export default function Comments({post_id,comments_list}) {
 
   return (
       <div>
-          <h4 className='text-2xl mx-0 mt-56 font-sans px-0 my-4 font-medium w-full'>Comments</h4>
+          <h4 className='text-2xl mx-0 mt-5 font-sans px-0 my-4 font-medium w-full'>Comments</h4>
         <div className="flex mx-auto   mb-4 font-sans ">
           <form className="w-full max-w-4xl bg-white rounded-lg text-xs px-4 pt-2" onSubmit={addComment}>
               <div className="flex flex-wrap -mx-3 mb-6">
@@ -72,9 +72,9 @@ export default function Comments({post_id,comments_list}) {
                   value={comment}
                 />
                 </div>
-                <div className="w-full md:w-full flex items-start md:w-full ">
+                <div  className="w-full md:w-full flex items-start md:w-full ">
                     <div className="">
-                      <input type='submit' className="h-7 bg-indigo-500  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-gray-100" value='Respond'/>
+                      <input disabled={comment?false:true} type='submit' className="disabled:bg-gray-300 h-7 bg-indigo-500  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-gray-100" value='Respond'/>
                     </div>
                 </div>
               </div>

@@ -189,7 +189,11 @@ export default function Layout({children,user}) {
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
+          <div className='inline-flex mt-2 mb-2'>
+          <RaveLogo />
           </div>
+          </div>
+          
           <main className="flex-1">
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
