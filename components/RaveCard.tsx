@@ -4,7 +4,10 @@ import { Card } from './Card'
 import BookmarkButton from './BookmarkButton';
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
-
+import {
+  PencilSquareIcon,
+  LinkIcon,
+} from '@heroicons/react/24/outline'
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -55,13 +58,28 @@ export default function RaveCard({ post }) {
               <dd className="text-base text-xs text-gray-300 font-light"> <div className='text-gray-300  inline-block'>・</div>{formatDate(post.created_at.split('T')[0])}</dd>
             </div>
             <div className='flex-grow'></div>
-            
-            <div className=''>
-              <ShareButton post_id={post.id}  />
+            {post.status!='draft' &&
+            <div>
+              <div className=''>
+                <ShareButton post_id={post.id}  />
+              </div>
+              <div className=''>
+                <BookmarkButton post_id={post.id} />
+              </div>
             </div>
-            <div className=''>
-              <BookmarkButton post_id={post.id} />
-            </div>
+            }     
+
+          {post.status=='draft' &&
+
+          <div className=''>
+            <Link href={"/rave/" + post.id+"/edit"}>
+              <a className="text-gray-400 hover:text-gray-500">
+                <span className="sr-only">Edit</span>
+                <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </Link>
+          </div>
+          }
           </div>
         }
         <div className="p-3 pl-5">
@@ -92,9 +110,11 @@ export default function RaveCard({ post }) {
                 </div>
               ))}
             </div>
-            <div className='flex-grow'></div>
 
-            <LikeButton  post_id={post.id} />
+            <div className='flex-grow'></div>
+            {post.status!='draft' &&
+              <LikeButton  post_id={post.id} />
+              }
           </div>
           
             

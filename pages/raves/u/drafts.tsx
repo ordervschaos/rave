@@ -1,3 +1,4 @@
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
 import { useEffect, useState } from 'react'
 import { useSession } from "@clerk/nextjs";
 import Layout from '../../../components/Layout'
@@ -21,14 +22,14 @@ export default function Home({params,user,posts}) {
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [postsList, setPostsList] = useState(posts);
-  const tags=_.uniq(_.map(_.flatten(posts.map((post)=>post.tags)),(tag)=>tag.value))
-  useEffect(()=>{
-    if(selectedTags.length>0){
-      setPostsList(posts.filter((post)=>_.map(post.tags,'value').some((tag)=>selectedTags.includes(tag))))
-    }else{
-      setPostsList(posts)
-    }
-  },[selectedTags])
+  // const tags=_.uniq(_.map(_.flatten(posts.map((post)=>post.tags)),(tag)=>tag.value))
+  // useEffect(()=>{
+  //   if(selectedTags.length>0){
+  //     setPostsList(posts.filter((post)=>_.map(post.tags,'value').some((tag)=>selectedTags.includes(tag))))
+  //   }else{
+  //     setPostsList(posts)
+  //   }
+  // },[selectedTags])
 
   return (
     <Layout user={user}>
@@ -42,8 +43,7 @@ export default function Home({params,user,posts}) {
        
         <TabPills user={user}/>
 
-      <TabMenu selectedTab={params.type}/>
-      <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+      <FilterMenu tags={[]} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
         <ul role="list" className="px-5">
           {postsList && postsList.map((rave) => (
             <RaveCard key={rave.id} post={rave} />
@@ -55,16 +55,29 @@ export default function Home({params,user,posts}) {
 }
 
 
-export async function getServerSideProps({ params }) {
- 
+
+
+
+export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
+  const { sessionId } = req.auth;
+  console.log("req.auth.user")
+  console.log(req.auth)
   var posts = await supabase.from("rave").select().match({
-    author_id: params.user_id,
-    status:'published'
+    author_id: req.auth.userId,
+    status:'draft'
   }).order('created_at', { ascending: false });
   posts = posts.data
 
+  posts=posts.filter((post)=>{
+    if(post.title || (post.review&&post.review.length > 0))
+      return true
+    else
+      return false
+ 
+  })
+
   var user
-  user=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {
+  user=await fetch(`https://api.clerk.dev/v1/users/${req.auth.userId}`, {
     headers: {
       'Authorization': `Bearer ${process.env.CLERK_API_KEY}`,
       'Content-Type': 'application/json'
@@ -77,7 +90,6 @@ export async function getServerSideProps({ params }) {
     props: {
       posts,
       user:user,
-      params
     },
   }
-}
+});
