@@ -34,7 +34,7 @@ import '../styles/globals.css'
 //   "/foo"           for pages/foo/index.js
 //   "/foo/bar"       for pages/foo/bar.js
 //   "/foo/[...bar]"  for pages/foo/[...bar].js
-const publicPages = [];
+const publicPages = ['/'];
 
 function MyApp({ Component, pageProps }) {
 
