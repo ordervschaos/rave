@@ -17,6 +17,7 @@ export default function LikeButton({post_id}) {
   
   const addLike =  async function(){
     setIsLiked(true)
+    setLikeCount(likeCount+1)
     const supabase_client= await supabaseClient(session) 
 
     await supabase_client.from("like").insert([
@@ -27,6 +28,7 @@ export default function LikeButton({post_id}) {
 
   const removeLike =  async function(){
     setIsLiked(false)
+    setLikeCount(likeCount-1)
     const supabase_client= await supabaseClient(session)
     await supabase_client.from("like").delete().match({ post_id:post_id,user_id: session.user.id });
   }
@@ -69,7 +71,7 @@ export default function LikeButton({post_id}) {
         className="relative inline-flex items-center rounded  bg-white  text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10"
       >
         <HeartIcon onClick={isLiked?removeLike:addLike} className= {`mr-2 h-5 w-5 ${isLiked?"text-pink-400":"text-gray-400"}`} aria-hidden="true" />
-      {likeCount}
+      {likeCount?likeCount:''}
       </button>
      
 
