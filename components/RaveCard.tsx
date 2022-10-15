@@ -9,6 +9,9 @@ import {
   PencilSquareIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline'
+import {
+  UserIcon
+} from '@heroicons/react/24/solid'
 export function formatDate(dateString) {
   return new Date(`${dateString}T00:00:00Z`).toLocaleDateString('en-US', {
     day: 'numeric',
@@ -46,11 +49,18 @@ export default function RaveCard({ post }) {
       <div className=" bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         {post &&
           <div className="flex w-full items-center space-x-1  p-3">
+            
             {post.author &&
             <div className=''>
               <div className="">
                 <div className="inline-block " >
+                  {post.author.profile_image_url&&
                   <Image  src={post.author.profile_image_url} alt="profile_pic" width={18} height={18} className="rounded-full" />
+                  }
+                  {!post.author.profile_image_url&&
+                  <UserIcon className="rounded-full bg-gray-200 p-1 text-blue-500 h-5 w-5"/>
+                  }
+                  
                 </div>
                 <span className="text-gray-800 font-light text-xs ml-2">{post.author.first_name} {post.author.last_name}</span>
               </div>
