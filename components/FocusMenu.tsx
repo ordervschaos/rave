@@ -134,7 +134,7 @@ export default function FocusMenu({handleClick,isPublished,user}) {
           <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
         </button>
         <div className="flex flex-1 items-center px-4">
-          <div className="flex flex-1">
+          <div className="cursor-pointer flex flex-1">
             <Link href='/raves'>
               <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
             </Link>
@@ -142,24 +142,18 @@ export default function FocusMenu({handleClick,isPublished,user}) {
           <div className="ml-4 flex items-center md:ml-6">
           {!isPublished && <button onClick={handleClick} 
             type="button"
-            className="inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Publish
           </button>}
           {isPublished && <button onClick={handleClick} 
             type="button"
-            className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mr-3 inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Update Post
           </button>}
               
-            <button
-              type="button"
-              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
+            
             {user.ShortUserButton}
 
           </div>
