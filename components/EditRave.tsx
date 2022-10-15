@@ -77,6 +77,7 @@ export default function EditRave({post,user}) {
                           type="text"
                           key="raveTitle1"
                           name="raveTitle1"
+                          autoFocus
                           className="text-3xl lg:text-5xl md:text-3xl block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	  placeholder-gray-300 ml-[0.5em] lg:ml-16 lg:placeholder:ml-20"
                           placeholder="The awesome thing"
                           onChange={(e)=>saveTitle(post,e)}

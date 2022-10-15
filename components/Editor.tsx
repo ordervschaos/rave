@@ -44,7 +44,7 @@ export default function Editor({ post }) {
 
   return (
     <>
-      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize}  onChange={saveReview} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
+      <ReactEditorJS defaultValue={JSON.parse(review_data)} onInitialize={handleInitialize} autofocus={false} onChange={saveReview} tools={EDITOR_JS_TOOLS} placeholder="Tell us the awesome things about the awesome thing" />
     </>
   )
 }

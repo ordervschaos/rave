@@ -86,7 +86,7 @@ export default function AddRaveForm() {
                         name="newRaveItem1"
                         className="block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	text-5xl placeholder-gray-300 ml-[0.5em] lg:ml-20 lg:placeholder:ml-20"
                         placeholder="The awesome thing"
-                        autofocus={true}
+                        autoFocus
                         onChange={(e) => setNewRaveItem(e.target.value)}
                          value={newRaveItem}
                       />
