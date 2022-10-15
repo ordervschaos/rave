@@ -21,7 +21,7 @@ function classNames(...classes) {
 
 export default function Layout({children,user}) {
   const navigation = [
-    { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false,
+    { name: 'Post a rave', href: '/create', icon: PencilSquareIcon, current: false,
     additionalClasses: 'rounded bg-gray-800 text-gray-100 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
     { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
     { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },

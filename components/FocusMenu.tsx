@@ -23,7 +23,7 @@ export default function FocusMenu({handleClick,isPublished,user}) {
   const navigation = [
     { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
     { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },
-    { name: 'Post new Rave', href: '/create', icon: PencilSquareIcon, current: false },
+    { name: 'Post a rave', href: '/create', icon: PencilSquareIcon, current: false },
     { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
     
   ]
