@@ -25,10 +25,6 @@ export default function TabMenu({selectedTab}) {
     {label:"Apps",value:"apps",},
     {label:"Audiobooks",value:"audiobooks",},
     {label:"Youtube Channels",value:"youtube_channels",},
-    
-
-
-
   ]
 
 

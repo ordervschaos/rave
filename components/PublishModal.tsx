@@ -20,17 +20,22 @@ const components = {
   DropdownIndicator: null,
 };
 
-const typeOptions = [
-  { value: 'book', label: 'Book' },
-  { value: 'video', label: 'Video' },
-  { value: 'articel', label: 'Article' },
-  { value: 'podcast', label: 'Podcast' },
-  { value: 'youtube_channel', label: 'Youtube Channel' },
-  { value: 'course', label: 'Course' },
-  { value: 'concept', label: 'Concept' },
-  { value: 'other', label: 'Other' },
 
-];
+var typeOptions=[
+  {label:"All",value:"",},
+  {label:"Book",value:"books",},
+  {label:"Video",value:"videos",},
+  ,{label:"Music",value:"music",}
+  ,{label:"Podcast",value:"podcasts",}
+  ,{label:"TV Show",value:"tv_shows",},
+  ,{label:"Website",value:"websites",},
+  {label:"Movie",value:"movies",},
+  {label:"App",value:"apps",},
+  {label:"Audiobook",value:"audiobooks",},
+  {label:"Youtube Channel",value:"youtube_channels",},
+  { value: 'concepts', label: 'Concept' },
+  { value: 'others', label: 'Other' },
+]
 
 const tagOptions=[
   { value: 'Technology', label: 'Technology' },

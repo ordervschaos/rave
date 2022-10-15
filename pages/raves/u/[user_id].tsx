@@ -17,7 +17,7 @@ const supabase = createClient(
 
 
 
-export default function Home({params,user,posts}) {
+export default function Home({params,user,author,posts}) {
     const { session } = useSession();
 
   const [selectedTags, setSelectedTags] = useState([]);
@@ -33,8 +33,9 @@ export default function Home({params,user,posts}) {
 
   return (
     <Layout user={user}>
+      
       <div className='flex max-w-3xl justify-between items-center'>
-        <h2 className='mt-12 font-extrabold text-4xl'>{user.firstName} {user.lastName}</h2>
+        <h2 className='mt-12 font-extrabold text-4xl'>{author.first_name} {author.last_name}</h2>
         <div className='flex-grow'></div>
         <ShareUserRavesButton/>
       </div>
@@ -66,20 +67,22 @@ export async function getServerSideProps({ params }) {
   }).order('created_at', { ascending: false });
   var posts = posts_res.data
 
-  var user
-  user=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {
+  var author
+  author=await fetch(`https://api.clerk.dev/v1/users/${params.user_id}`, {
     headers: {
       'Authorization': `Bearer ${process.env.CLERK_API_KEY}`,
       'Content-Type': 'application/json'
     }
   });
-  user = await user.json()
+  author = await author.json()
+
+  console.log("author========",author)
 
 
   return {
     props: {
       posts,
-      user:user,
+      author:author,
       params
     },
   }
