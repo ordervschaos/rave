@@ -35,7 +35,12 @@ export default function Home({params,user,author,posts}) {
     <Layout user={user}>
       
       <div className='flex max-w-3xl justify-between items-center'>
-        <h2 className='mt-12 font-extrabold text-4xl'>{author.first_name} {author.last_name}</h2>
+        <h2 className='mt-12 font-extrabold text-4xl'>
+          {author.first_name} {author.last_name}
+          {!author.first_name && !author.last_name && 
+            author.username
+          }
+          </h2>
         <div className='flex-grow'></div>
         <ShareUserRavesButton/>
       </div>
