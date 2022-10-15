@@ -72,13 +72,14 @@ export default function RaveView({ post }) {
         <div className=''>
           <ShareButton post_id={post.id}  />
         </div>
-        {session && session.userId == post.author.id &&
+        {session && session.user.id == post.author_id &&
 
           <div className=''>
             <Link href={"/rave/" + post.id+"/edit"}>
               <a className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Edit</span>
                 <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
+        
               </a>
             </Link>
           </div>
