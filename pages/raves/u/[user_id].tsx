@@ -18,6 +18,7 @@ const supabase = createClient(
 
 
 export default function Home({params,user,posts}) {
+    const { session } = useSession();
 
   const [selectedTags, setSelectedTags] = useState([]);
   const [postsList, setPostsList] = useState(posts);
@@ -39,8 +40,10 @@ export default function Home({params,user,posts}) {
       </div>
       <div className="mt-6 max-w-3xl flow-root">
         {/* draft raves tab */}
-       
+       {session.user.id==params.user_id && 
+
         <TabPills user={user}/>
+       }
 
       <TabMenu selectedTab={params.type}/>
       <FilterMenu tags={tags} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />

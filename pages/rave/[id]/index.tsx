@@ -36,7 +36,7 @@ export async function getServerSideProps({ params }) {
   });
 
   user = await user.json()
-  post.author=_.pick(user,['first_name','last_name','profile_image_url','username'])
+  post.author=_.pick(user,['id','first_name','last_name','profile_image_url','username'])
 
 
 

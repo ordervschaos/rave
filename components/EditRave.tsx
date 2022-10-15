@@ -1,5 +1,5 @@
 import { useSession } from "@clerk/nextjs";
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createClient } from "@supabase/supabase-js";
 
 
@@ -24,7 +24,11 @@ export default function EditRave({post,user}) {
   const [open, setOpen] = useState(false);
 
   const [raveTitle, setRaveTitle] = useState(post.title);
+  
 
+
+
+ 
 
   //function to save title
   const saveTitle =async (post,e) => {
@@ -77,7 +81,7 @@ export default function EditRave({post,user}) {
                           type="text"
                           key="raveTitle1"
                           name="raveTitle1"
-                          autoFocus
+                          autoFocus={true}
                           className="text-3xl lg:text-5xl md:text-3xl block w-full flex-1 border-none focus:border-transparent focus:ring-0 font-serif	  placeholder-gray-300 ml-[0.5em] lg:ml-16 lg:placeholder:ml-20"
                           placeholder="The awesome thing"
                           onChange={(e)=>saveTitle(post,e)}
@@ -90,7 +94,7 @@ export default function EditRave({post,user}) {
 
               </div>
 
-              {post&&<Editor post={post}  />}
+              <Editor post={post}  />
 
             </div>
           </div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Card } from './Card'
 import BookmarkButton from './BookmarkButton';
+import AuthorButton from './AuhtorButton'
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
 import {
@@ -50,14 +51,7 @@ export default function RaveCard({ post }) {
             
             {post.author &&
             <div className=''>
-              <div className="">
-                <div className="inline-block " >
-                  {post.author.profile_image_url&&
-                  <Image  src={post.author.profile_image_url} alt="profile_pic" width={18} height={18} className="rounded-full" />
-                  }
-                </div>
-                <span className="text-gray-800 font-light text-xs ml-2">{post.author.first_name} {post.author.last_name}</span>
-              </div>
+             <AuthorButton author={post.author}/>
             </div>
             }
             <div className=''>

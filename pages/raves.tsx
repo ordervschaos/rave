@@ -60,7 +60,7 @@ export async function getServerSideProps({ params }) {
 
   users = await users.json()
   posts = posts.map((post)=>{
-    post.author=_.pick(users.find((user)=>user.id==post.author_id),['first_name','last_name','profile_image_url','username'])
+    post.author=_.pick(users.find((user)=>user.id==post.author_id),['id','first_name','last_name','profile_image_url','username'])
     return post
   })
 
