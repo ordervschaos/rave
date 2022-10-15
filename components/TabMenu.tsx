@@ -15,21 +15,17 @@ export default function TabMenu({selectedTab}) {
 
   var tabs:Tab[]=[
     {label:"All",value:"",},
-    {label:"Books",value:"book",},
-    {label:"Movies",value:"movie",}
+    {label:"Books",value:"books",},
+    {label:"Videos",value:"videos",},
     ,{label:"Music",value:"music",}
-    ,{label:"Podcasts",value:"podcast",}
-    ,{label:"TV Shows",value:"tv",},
-    {label:"Movies",value:"movie",}
-    ,{label:"Music",value:"music",}
-    ,{label:"Podcasts",value:"podcast",}
-    ,{label:"TV Shows",value:"tv",}
-    ,{label:"Video Games",value:"game",}
-    ,{label:"Websites",value:"website",},
-    {label:"Apps",value:"app",},
-    {label:"Audiobooks",value:"audiobook",},
-    {label:"Youtube Channels",value:"youtube_channel",},
-    {label:"Youtube Videos",value:"youtube_video",},
+    ,{label:"Podcasts",value:"podcasts",}
+    ,{label:"TV Shows",value:"tv_shows",},
+    ,{label:"Websites",value:"websites",},
+    {label:"Movies",value:"movies",},
+    {label:"Apps",value:"apps",},
+    {label:"Audiobooks",value:"audiobooks",},
+    {label:"Youtube Channels",value:"youtube_channels",},
+    
 
 
 

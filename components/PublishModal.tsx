@@ -141,10 +141,10 @@ export default function Example({ open, setOpen, post }) {
     console.log("link", link)
 
     const supabase = await supabaseClient(session);
-
+    raveType.value=raveType.value.toLowerCase().replace(" ","_")
     await supabase
       .from("rave")
-      .update({ link: link, tags: tags, type: raveType }).match({ id: post.id, author_id: session.user.id });
+      .update({ link: link, tags: tags, type: raveType, status:'published' }).match({ id: post.id, author_id: session.user.id });
 
     
       Router.push(`/rave/${post.id}`)
