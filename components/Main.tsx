@@ -90,10 +90,10 @@ export default function Main() {
           </h1>
             
           </div>
-          <div className=" -m-4 px-5 py-24 ">
-            <div className=" grid grid-cols-2 md:grid-cols-3 gap-16 mb-16  lg:grid-cols-4 m-2">
+          <div className=" py-24 ">
+            <div className=" grid grid-cols-2 md:grid-cols-3 gap-12 mr-2 mb-16  lg:grid-cols-4 ">
               {statistics.map((statistic) => (
-                <div key={statistic.description} className="col-span-1 ">
+                <div key={statistic.description} className="col-span-1  pr-2">
                   <div className="block font-bold text-2xl">
                     {statistic.number}+
                   </div>
@@ -161,12 +161,12 @@ export default function Main() {
             </button>
             <h1 className="text-center mt-12 mx-auto mb-8 text-2xl Avenir font-semibold text-gray-600">
 
-              And checkout the
+              And, checkout the
 
-              <div className=" underline">
+              <div className="">
                 <Link href="/raves">
                 <div
-                className="cursor-pointer sm:m-2 md:m-auto lg:m-auto p-auto text-center  inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-800"
+                className="cursor-pointer sm:m-2 md:m-auto lg:m-auto p-auto text-center  inline-flex items-center px-3 lg:px-5 md:px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-800"
               >
                   <span className="justify-center">stuff others are raving about.</span>
               </div>

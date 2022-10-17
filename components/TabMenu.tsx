@@ -51,11 +51,11 @@ export default function TabMenu({selectedTab}) {
   
   
   return (
-    <div className="border-b border-gray-200 w-full">
+    <div className="border-b border-gray-200 w-full ">
       <div className="sm:flex sm:items-baseline">
         <h3 className="text-lg font-medium leading-6 text-gray-900"></h3>
         <div className="mt-4 sm:mt-0 sm:ml-10">
-          <nav className="-mb-px flex space-x-8 overflow-x-auto max-w-2xl	">
+          <nav className="-mb-px no-scrollbar flex space-x-8 overflow-x-auto max-w-2xl	">
             {tabs.map((tab) => (
               <a
                 key={tab.value}
