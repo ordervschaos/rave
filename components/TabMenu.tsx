@@ -1,4 +1,4 @@
-
+import tabs from "../config/type_options"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -13,19 +13,8 @@ export default function TabMenu({selectedTab}) {
     current?: boolean;
   }
 
-  var tabs:Tab[]=[
-    {label:"All",value:"",},
-    {label:"Books",value:"books",},
-    {label:"Videos",value:"videos",},
-    ,{label:"Music",value:"music",}
-    ,{label:"Podcasts",value:"podcasts",}
-    ,{label:"TV Shows",value:"tv_shows",},
-    ,{label:"Websites",value:"websites",},
-    {label:"Movies",value:"movies",},
-    {label:"Apps",value:"apps",},
-    {label:"Audiobooks",value:"audiobooks",},
-    {label:"Youtube Channels",value:"youtube_channels",},
-  ]
+  
+
 
 
   var url=window.location.pathname

@@ -21,21 +21,13 @@ const components = {
 };
 
 
-var typeOptions=[
-  {label:"All",value:"",},
-  {label:"Book",value:"books",},
-  {label:"Video",value:"videos",},
-  ,{label:"Music",value:"music",}
-  ,{label:"Podcast",value:"podcasts",}
-  ,{label:"TV Show",value:"tv_shows",},
-  ,{label:"Website",value:"websites",},
-  {label:"Movie",value:"movies",},
-  {label:"App",value:"apps",},
-  {label:"Audiobook",value:"audiobooks",},
-  {label:"Youtube Channel",value:"youtube_channels",},
-  { value: 'concepts', label: 'Concept' },
-  { value: 'others', label: 'Other' },
-]
+import types from "../config/type_options"
+var typeOptions=types.map((type)=>{
+  return {
+    value:type.value,
+    label:type.label.replace(/s$/g,"")}
+})
+
 
 const tagOptions=[
   { value: 'Technology', label: 'Technology' },
