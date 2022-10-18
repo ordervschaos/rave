@@ -10,6 +10,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { supabaseClient } from '../utils/supabaseClient';
 import { useSession } from "@clerk/nextjs";
+import Link from '../node_modules/next/link';
 
 
 
@@ -29,7 +30,7 @@ export default function ThreeDotsMenu({ post,setPostVisible }) {
   return (
     <Menu as="div" className="relative text-left">
       <div>
-        <Menu.Button className="rounded-md mr-4 p-2 hover:bg-gray-50 ">
+        <Menu.Button className="rounded-md p-2 hover:bg-gray-50 ">
 
           <EllipsisVerticalIcon onClick={showThreeDotMenu ? () => setThreeDotMenu(false) : () => setThreeDotMenu(true)} className="h-5 w-5 text-gray-400" aria-hidden="true" />
 
@@ -66,6 +67,24 @@ export default function ThreeDotsMenu({ post,setPostVisible }) {
                     Delete
                   </button>
                 </div>
+              </a>
+                
+              </Menu.Item>
+            <Menu.Item>
+
+              {/* delete post */}
+              <a
+                href="#"
+                className='text-gray-700 w-full block  text-sm'
+              >
+                <Link href={"/rave/"+post.id+"/edit"} className='inline-block m-2'>
+                  <button
+                   
+                    className='text-gray-700 w-full block px-4 py-2 text-sm'
+                  >
+                    Edit
+                  </button>
+                </Link>
               </a>
                 
               </Menu.Item>
