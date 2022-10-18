@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import { NextSeo } from "next-seo";
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
 
 export default function Home() {
   return (
@@ -25,3 +26,16 @@ export default function Home() {
     </div>
   );
 }
+
+
+export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
+  
+ if(req.auth.userId){
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/raves",
+    }
+  }
+}
+});
