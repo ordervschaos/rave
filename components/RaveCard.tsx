@@ -117,10 +117,12 @@ export default function RaveCard({ post }) {
                   </a>
                 </div>
               }
+              <Link className="" href={"/rave/" + post.id}>
 
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                <Blocks data={JSON.parse(post.review)} />
-              </p>
+                <p className="cursor-pointer mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  <Blocks data={JSON.parse(post.review)} />
+                </p>
+              </Link>
               {/* tag chips */}
               <div className="flex w-full items-center space-x-1 pt-1  px-3">
 
