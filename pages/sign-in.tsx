@@ -1,4 +1,4 @@
-import { WithUser, WithUserProp } from "@clerk/clerk-react";
+import { WithUser } from "@clerk/clerk-react";
 import {useSession} from '@clerk/nextjs'
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
 // type UserStripProps = {
@@ -63,12 +63,7 @@ function MyApp() {
   return (
 
         <>
-          <SignedIn>
-            {() => {
-              Router.push('/raves')
-            }}
-
-          </SignedIn>
+         
           <SignedOut>
             <RedirectToSignIn />
           </SignedOut>
