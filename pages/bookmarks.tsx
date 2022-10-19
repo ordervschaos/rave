@@ -24,6 +24,14 @@ export default function userBookmarks({ user,posts }) {
 export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
   const supabase = await supabaseServerSide(req.auth);
 
+  if(!req.auth.userId)
+    return{
+      redirect: {
+        permanent: false,
+        destination: "/sign-in?redirectTo=/create",
+      }
+    }
+
   var bookmarks_res= await supabase.from("bookmark").select().match({
     user_id: req.auth.userId,
   }).order('created_at', { ascending: false });

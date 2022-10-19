@@ -23,11 +23,11 @@ import { WithUser, WithUserProp } from "@clerk/clerk-react";
 
 
 
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn,UserButton } from '@clerk/nextjs';
+import { ClerkProvider,RedirectToUserProfile, SignedIn, SignedOut, RedirectToSignIn,UserButton } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 
 
-import '../styles/globals.css'
+
 //  List pages you want to be publicly accessible, or leave empty if
 //  every page requires authentication. Use this naming strategy:
 //   "/"              for pages/index.js
@@ -36,9 +36,8 @@ import '../styles/globals.css'
 //   "/foo/[...bar]"  for pages/foo/[...bar].js
 const publicPages = ['/'];
 
-function MyApp({ Component, pageProps }) {
+function MyApp() {
 
-  const getLayout = Component.getLayout || ((page) => page)
 
   
   // Get the pathname
@@ -59,25 +58,19 @@ function MyApp({ Component, pageProps }) {
   
   var userButton = <UserButton showName={true}	/>
   var ShortUserButton = <UserButton showName={false}	/>
-  return getLayout(
-    <ClerkProvider>
-      {isPublicPage ? (
-        <Component {...pageProps} />
-      ) : (
+  return (
+
         <>
           <SignedIn>
-            <WithUser>
-              {(user) => (
-                <Component {...pageProps} user={{...user,userButton,ShortUserButton}}/>  
-              )}
-            </WithUser>
+          <RedirectToUserProfile />
+
           </SignedIn>
           <SignedOut>
-            <Component {...pageProps} user={null}/>  
+            <RedirectToSignIn />
           </SignedOut>
         </>
-      )}
-    </ClerkProvider>
+
+
   );
 }
 

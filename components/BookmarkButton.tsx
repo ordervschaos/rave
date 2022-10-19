@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 
+import Router from "../node_modules/next/router";
 
 
 export default function BoookmarkButton({post_id}) {
@@ -16,6 +17,11 @@ export default function BoookmarkButton({post_id}) {
   
   
   const addBookmark =  async function(){
+    if(!session)
+      return Router.push(`/sign-in`)
+
+
+
     setIsBookmarked(true)
     const supabase_client= await supabaseClient(session) 
 
@@ -33,6 +39,8 @@ export default function BoookmarkButton({post_id}) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   useEffect(() => {
     const fetchBookmark = async () => {
+      if(!session)
+        return false
       const supabase_client=await  supabaseClient(session)
       const { data, error } = await supabase_client
         .from("bookmark")

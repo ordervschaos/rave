@@ -24,8 +24,8 @@ export default function Layout({children,user}) {
     { name: 'Post a rave', href: '/create', icon: PencilSquareIcon, current: false,
     additionalClasses: 'rounded bg-gray-800 text-gray-100 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
     { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
-    { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },
-    { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
+    { name: 'My Raves', href: user?('/raves/u/' +user?.id):('/sign-in'), icon: DocumentTextIcon, current: false },
+    { name: 'Bookmarks', href: user?('/bookmarks'):('/sign-in?bookmarks'), icon: BookmarkIcon, current: false },
     
   ]
   navigation.forEach((item) => {
@@ -124,7 +124,7 @@ export default function Layout({children,user}) {
                         <div>
                         </div>
                         <div className="ml-3">
-                          {user.userButton}
+                          {user?.userButton}
                         </div>
                       </div>
                     </a>
@@ -170,7 +170,7 @@ export default function Layout({children,user}) {
               <a href="#" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
-                    {user.userButton}
+                    {user?.userButton}
                   </div>
                   <div className="ml-3">
 

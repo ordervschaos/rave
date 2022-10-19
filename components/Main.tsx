@@ -56,7 +56,7 @@ export default function Main() {
               <Link href="/raves">
 
                 <div
-                  className="inline-flex items-center px-5 py-3 mt-2 font-medium text-gray-00 transition duration-500 ease-in-out transform bg-transparent border border-gray-700 border-2 ml-3 rounded-lg bg-white-400"
+                  className="inline-flex cursor-pointer items-center px-5 py-3 mt-2 font-medium text-gray-00 transition duration-500 ease-in-out transform bg-transparent border border-gray-700 border-2 ml-3 rounded-lg bg-white-400"
                 >
                   <div  className="justify-center">Get started</div>
                 </div>

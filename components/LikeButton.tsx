@@ -10,12 +10,15 @@ import { useEffect, useState } from 'react';
 
 
 
+import Router from "../node_modules/next/router";
 
 export default function LikeButton({post_id}) {
   const { session } = useSession();
   
   
   const addLike =  async function(){
+    if(!session)
+      return Router.push(`/sign-in`)
     setIsLiked(true)
     setLikeCount(likeCount+1)
     const supabase_client= await supabaseClient(session) 
@@ -36,6 +39,8 @@ export default function LikeButton({post_id}) {
   const [likeCount, setLikeCount] = useState(0);
   useEffect(() => {
     const fetchLike = async () => {
+      if(!session)
+        return
       const supabase_client=await  supabaseClient(session)
       const { data, error } = await supabase_client
         .from("like")

@@ -7,7 +7,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 
 export const supabaseClient = async (session) => {
- 
+  if(!session)
+    return supabase;
   const supabaseAccessToken = await session.getToken({
     template: "supabase",
   });
