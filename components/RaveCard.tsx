@@ -110,7 +110,7 @@ export default function RaveCard({ post }) {
                 <h5 className="cursor-pointer mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{post.title}</h5>
               </Link>
               {post.link &&
-                <div className='mb-6'>
+                <div className='mb-6  overflow-hidden	'>
                   <a href={post.link} target='_blank' rel='noreferrer' className='flex items-center space-x-2'>
                     <LinkIcon className='h-5 w-5 text-gray-400' />
                     <span className='text-gray-400 font-light'>{post.link}</span>
