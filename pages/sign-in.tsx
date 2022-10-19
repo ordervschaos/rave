@@ -1,5 +1,6 @@
 import { WithUser, WithUserProp } from "@clerk/clerk-react";
-
+import {useSession} from '@clerk/nextjs'
+import { withServerSideAuth } from "@clerk/nextjs/ssr";
 // type UserStripProps = {
 //   user_name: string;
 // }
@@ -27,6 +28,8 @@ import { ClerkProvider,RedirectToUserProfile, SignedIn, SignedOut, RedirectToSig
 import { useRouter } from 'next/router';
 
 
+import Router from "../node_modules/next/router";
+
 
 //  List pages you want to be publicly accessible, or leave empty if
 //  every page requires authentication. Use this naming strategy:
@@ -37,7 +40,6 @@ import { useRouter } from 'next/router';
 const publicPages = ['/'];
 
 function MyApp() {
-
 
   
   // Get the pathname
@@ -62,7 +64,9 @@ function MyApp() {
 
         <>
           <SignedIn>
-          <RedirectToUserProfile />
+            {() => {
+              Router.push('/raves')
+            }}
 
           </SignedIn>
           <SignedOut>
@@ -78,3 +82,18 @@ export default MyApp;
 
 
 
+export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }) => {
+  
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  
+  if(req.auth.userId){
+   return {
+      redirect:{
+        destination:'/raves',
+        permanent:false
+      }
+   }
+  }
+})
