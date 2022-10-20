@@ -127,7 +127,7 @@ export default function FocusMenu({handleClick,isPublished,user}) {
       <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white ">
         <button
           type="button"
-          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 md:hidden"
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
@@ -136,19 +136,19 @@ export default function FocusMenu({handleClick,isPublished,user}) {
         <div className="flex flex-1 items-center px-4">
           <div className="cursor-pointer flex flex-1">
             <Link href='/raves'>
-              <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
+              <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-700" aria-hidden="true" />
             </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
           {!isPublished && <button onClick={handleClick} 
             type="button"
-            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Publish
           </button>}
           {isPublished && <button onClick={handleClick} 
             type="button"
-            className="mr-3 inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-800 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Update Post
           </button>}

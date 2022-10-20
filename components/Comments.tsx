@@ -73,7 +73,7 @@ export default function Comments({post_id,comments_list}) {
                 </div>
                 <div  className="w-full md:w-full flex items-start md:w-full ">
                     <div className="">
-                      <input disabled={comment?false:true} type='submit' className="disabled:bg-gray-300 h-7 bg-indigo-500  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-indigo-800" value='Respond'/>
+                      <input disabled={comment?false:true} type='submit' className="disabled:bg-gray-300 h-7 bg-gray-800  text-white font-medium py-1 px-4 border border-gray-400 rounded-2xl tracking-wide mr-1 hover:bg-indigo-800" value='Respond'/>
                     </div>
                 </div>
               </div>

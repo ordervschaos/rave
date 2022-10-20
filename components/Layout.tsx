@@ -22,7 +22,7 @@ function classNames(...classes) {
 export default function Layout({children,user}) {
   const navigation = [
     { name: 'Post a rave', href: '/create', icon: PencilSquareIcon, current: false,
-    additionalClasses: 'rounded bg-gray-800 text-gray-100 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
+    additionalClasses: 'rounded bg-gray-800 hover:bg-gray-900 text-gray-100 hover:text-gray-300 rounded-4xl pl-6 mt-12 pr-10 my-5 mx-3' },
     { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
     { name: 'My Raves', href: user?('/raves/u/' +user?.id):('/sign-in'), icon: DocumentTextIcon, current: false },
     { name: 'Bookmarks', href: user?('/bookmarks'):('/sign-in?bookmarks'), icon: BookmarkIcon, current: false },
@@ -94,7 +94,7 @@ export default function Layout({children,user}) {
                   </Transition.Child>
                   <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
                     <RaveLogo />
-                    <nav className="mt-5 space-y-1 px-2">
+                    <nav className="mt-5 space-y-1 pl-2">
                       {navigation.map((item) => (
                         <a
                           key={item.name}
@@ -140,18 +140,18 @@ export default function Layout({children,user}) {
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-            <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+            <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4 ">
               <div className="flex flex-shrink-0 items-center px-4">
                 <RaveLogo />
               </div>
-              <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
+              <nav className="mt-5 flex-1 space-y-3 bg-white  ">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     className={classNames(
                       item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md' + item.additionalClasses
+                      'group flex items-center px-8  py-2 text-sm font-medium rounded-md' + item.additionalClasses
                     )}
                   >
                     <item.icon

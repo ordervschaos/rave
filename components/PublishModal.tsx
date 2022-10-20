@@ -320,7 +320,7 @@ export default function Example({ open, setOpen, post }) {
                   <button 
                     type="button" disabled={raveType.value?false:true}
                     className={
-                      "disabled:bg-gray-400 inline-flex w-full justify-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-black-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                      "disabled:bg-gray-400 inline-flex w-full justify-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-grya-900 focus:outline-none focus:ring-2 focus:ring-black-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     }
 
                     onClick={() => {

@@ -61,7 +61,7 @@ export default function BoookmarkButton({post_id}) {
 
       <button
         type="button"
-        className="relative inline-flex items-center rounded  bg-white py-2 mr-1 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10  focus:ring-indigo-500"
+        className="relative inline-flex items-center rounded  bg-white py-2 mr-1 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10  focus:ring-gray-500"
       >
         <BookmarkIcon onClick={isBookmarked?removeBookmark:addBookmark} className= {`h-5 w-5 ${isBookmarked?"text-green-400":"text-gray-400"}`} aria-hidden="true" />
       </button>
