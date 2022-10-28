@@ -47,7 +47,7 @@ export default function RaveView({ post }) {
 
 
 
-    <div className='font-serif'>
+    <div className='font-serif '>
       <div className="flex w-full items-center space-x-6 pb-3">
 
 
@@ -99,7 +99,14 @@ export default function RaveView({ post }) {
       {formatDate(post.created_at.split('T')[0])}
     </Card.Eyebrow> */}
 
-      <Blocks data={JSON.parse(post.review)} />
+      <Blocks data={JSON.parse(post.review)} config={{
+        embed: {
+          className: "max-w-full my-4",
+        },
+        paragraph: {
+          className: "my-4",
+        },
+      }}/>
 
       <div className='mt-24 flex items-center space-x-2 mb-3'>
 

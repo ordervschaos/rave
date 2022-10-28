@@ -48,7 +48,7 @@ export default function Main() {
             </p> */}
             <div className="flex">
               <button 
-                className="cursor-pointer  bg-gray-800 inline-flex  px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg"
+                className="cursor-pointer bg-gray-800  inline-flex  px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform border rounded-lg"
                 onClick={handleClick}
               >
                 <div  className="">Find out more</div>
@@ -166,7 +166,7 @@ export default function Main() {
               <div className="">
                 <Link href="/raves">
                 <div
-                className="cursor-pointer sm:m-2 md:m-auto lg:m-auto p-auto text-center  inline-flex items-center px-3 lg:px-5 md:px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-800"
+                className="cursor-pointer sm:m-2 md:m-auto lg:m-auto p-auto text-center  inline-flex items-center px-3 lg:px-5 md:px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform border rounded-lg bg-gray-800"
               >
                   <span className="justify-center">stuff others are raving about.</span>
               </div>
