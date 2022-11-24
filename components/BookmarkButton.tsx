@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import Router from "../node_modules/next/router";
 
 
-export default function BoookmarkButton({post_id}) {
+export default function BoookmarkButton({dish_id}) {
   const { session } = useSession();
   
   

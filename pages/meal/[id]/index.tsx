@@ -68,19 +68,3 @@ export async function getServerSideProps({ params }) {
   // Pass post data to the page via props
   return { props: { post } }
 }
-
-// export async function getStaticPaths() {
-//   // Call an external API endpoint to get posts
-//   var raves_res = await supabase.from("rave").select().eq('status','published').order('created_at', { ascending: false });
-//   var raves = raves_res.data
-
-//   // Get the paths we want to pre-render based on posts
-//   const paths = raves.map((rave) => ({
-//     params: { id: rave.id.toString() },
-//   }))
-//   console.log("paths***&^*&%^&^%*^%$^&*%^^&%$%^",paths)
-
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: false } means other routes should 404.
-//   return { paths, fallback: true }
-// }

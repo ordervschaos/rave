@@ -9,13 +9,11 @@ const ReactEditorJS = createReactEditorJS()
 
 
 
-export default function Editor({ post }) {
-
-
+export default function DishEditor({ dish }) {
   const { session } = useSession();
   const editorCore = React.useRef(null)
 
-  var review_data=post.review
+  var review_data=dish.content
 
   const handleInitialize = React.useCallback((instance) => {
     editorCore.current = instance
@@ -30,12 +28,12 @@ export default function Editor({ post }) {
       const supabase_client= await supabaseClient(session) 
 
       await supabase_client
-        .from("rave")
-        .update({ review: JSON.stringify(savedData), author_id: session.user.id }).match({ id: post.id });
+        .from("dish")
+        .update({ content: JSON.stringify(savedData), owner_id: session.user.id }).match({ id: dish.id });
     }
 
 
-  }, [session,post.id])
+  }, [session,dish.id])
   
 
 

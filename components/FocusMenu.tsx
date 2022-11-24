@@ -19,12 +19,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function FocusMenu({handleClick,isPublished,user}) {
+export default function FocusMenu({user}) {
   const navigation = [
-    { name: 'Home', href: '/raves', icon: HomeIcon, current: false },
-    { name: 'My Raves', href: '/raves/u/' +user.id, icon: DocumentTextIcon, current: false },
-    { name: 'Post a rave', href: '/create', icon: PencilSquareIcon, current: false },
-    { name: 'Bookmarks', href: '/bookmarks', icon: BookmarkIcon, current: false },
+    { name: 'Home', href: '/cafe', icon: HomeIcon, current: false },
+    { name: 'Meals', href: '/meals/' +user.id, icon: DocumentTextIcon, current: false },
+    { name: 'Create a meal', href: '/create', icon: PencilSquareIcon, current: false },
     
   ]
   navigation.forEach((item) => {
@@ -135,23 +134,12 @@ export default function FocusMenu({handleClick,isPublished,user}) {
         </button>
         <div className="flex flex-1 items-center px-4">
           <div className="cursor-pointer flex flex-1">
-            <Link href='/raves'>
+            <Link href='/cafe'>
               <HomeIcon className="mr-4 h-6 w-6 flex-shrink-0 text-gray-700" aria-hidden="true" />
             </Link>
           </div>
           <div className="ml-4 flex items-center md:ml-6">
-          {!isPublished && <button onClick={handleClick} 
-            type="button"
-            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-900 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Publish
-          </button>}
-          {isPublished && <button onClick={handleClick} 
-            type="button"
-            className="mr-3 inline-flex items-center rounded border border-transparent bg-gray-800 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Update Post
-          </button>}
+         
               
             
             {user.ShortUserButton}

@@ -1,6 +1,6 @@
 import {supabaseServerSide} from "../utils/supabaseClient";
 import { withServerSideAuth } from "@clerk/nextjs/ssr";
-import RaveCard from "../components/RaveCard";
+import RaveCard from "../components/DishCard";
 import Layout from "../components/Layout";
 
 
