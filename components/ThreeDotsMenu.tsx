@@ -15,16 +15,16 @@ import Link from '../node_modules/next/link';
 
 
 
-export default function ThreeDotsMenu({ dish,setDishVisible }) {
+export default function ThreeDotsMenu({ post,setPostVisible }) {
   var { session } = useSession()
 
   const [showThreeDotMenu, setThreeDotMenu] = useState(false)
-  var deleteDish = async (dish_id) => {
+  var deletePost = async (post_id) => {
     const supabase_client= await supabaseClient(session) 
     
-    var delete_res=await supabase_client.from("dish").delete().match({ id: dish_id,owner_id: session.user.id });
+    var delete_res=await supabase_client.from("rave").delete().match({ id: post_id,author_id: session.user.id });
     console.log(delete_res)
-    setDishVisible(false)
+    setPostVisible(false)
   }
 
   return (
@@ -51,7 +51,7 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
 
             <Menu.Item>
 
-              {/* delete dish */}
+              {/* delete post */}
               <a
                 href="#"
                 className='text-gray-700 w-full block  text-sm'
@@ -60,7 +60,7 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
                   <button
                     onClick={() => {
                       setThreeDotMenu(false)
-                      deleteDish(dish.id)
+                      deletePost(post.id)
                     }}
                     className='text-gray-700 w-full block px-4 py-2 text-sm'
                   >
@@ -72,12 +72,12 @@ export default function ThreeDotsMenu({ dish,setDishVisible }) {
               </Menu.Item>
             <Menu.Item>
 
-              {/* delete dish */}
+              {/* delete post */}
               <a
                 href="#"
                 className='text-gray-700 w-full block  text-sm'
               >
-                <Link href={"/dish/"+dish.id+"/edit"} className='inline-block m-2'>
+                <Link href={"/rave/"+post.id+"/edit"} className='inline-block m-2'>
                   <button
                    
                     className='text-gray-700 w-full block px-4 py-2 text-sm'

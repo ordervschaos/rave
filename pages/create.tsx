@@ -17,16 +17,16 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
 
 
 
-  var meal = await supabase.from("meal").insert([
-    {  owner_id: req.auth.userId },
+  var rave = await supabase.from("rave").insert([
+    { status: 'draft', author_id: req.auth.userId },
   ]);
 
-  console.log(meal)
+  console.log(rave)
 
   return {
     redirect: {
       permanent: false,
-      destination: "meal/" + meal.data[0].id + "/edit",
+      destination: "rave/" + rave.data[0].id + "/edit",
     }
   }
 });

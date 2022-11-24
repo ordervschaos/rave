@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 
 
 import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("./DishEditor"), { ssr: false });
+const Editor = dynamic(() => import("./Editor"), { ssr: false });
 import {supabaseClient} from '../utils/supabaseClient'
 // import EditorJS from '@editorjs/editorjs';
 

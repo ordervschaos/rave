@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 
 import Router from "../node_modules/next/router";
 
-export default function LikeButton({dish_id}) {
+export default function LikeButton({post_id}) {
   const { session } = useSession();
   
   
@@ -24,7 +24,7 @@ export default function LikeButton({dish_id}) {
     const supabase_client= await supabaseClient(session) 
 
     await supabase_client.from("like").insert([
-    { dish_id:dish_id,user_id: session.user.id },
+    { post_id:post_id,user_id: session.user.id },
     ]);
 
   }
@@ -33,7 +33,7 @@ export default function LikeButton({dish_id}) {
     setIsLiked(false)
     setLikeCount(likeCount-1)
     const supabase_client= await supabaseClient(session)
-    await supabase_client.from("like").delete().match({ dish_id:dish_id,user_id: session.user.id });
+    await supabase_client.from("like").delete().match({ post_id:post_id,user_id: session.user.id });
   }
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -45,7 +45,7 @@ export default function LikeButton({dish_id}) {
       const { data, error } = await supabase_client
         .from("like")
         .select("*")
-        .match({ dish_id:dish_id,user_id: session.user.id });
+        .match({ post_id:post_id,user_id: session.user.id });
       console.log('data')
       console.log(data)
       if(data.length>0){
@@ -57,7 +57,7 @@ export default function LikeButton({dish_id}) {
       const { data, count } = await supabase_client
         .from("like")
         .select("*",{ count: 'estimated' })
-        .match({ dish_id:dish_id});
+        .match({ post_id:post_id});
       // console.log('data')
       // console.log(data)
       if(count>0)
@@ -65,7 +65,7 @@ export default function LikeButton({dish_id}) {
     };
     countLikes()
     fetchLike();
-  }, [dish_id]);
+  }, [post_id]);
 
     
 

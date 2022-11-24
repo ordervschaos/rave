@@ -39,7 +39,7 @@ export default function Header() {
         </div>
         <Link
 
-          href="/cafe"
+          href="/raves"
         ><div className="cursor-pointer max-h-10 mt-4 inline-flex items-center px-4 py-2 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent rounded-lg text-md  bg-gray-800">
             <span className="justify-center">Dashboard</span>
           </div>

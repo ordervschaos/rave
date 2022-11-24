@@ -34,7 +34,7 @@ export const getServerSideProps = withServerSideAuth(async ({ req, resolvedUrl }
   return {
     redirect: {
       permanent: false,
-      destination: "/cafe",
+      destination: "/raves",
     }
   }
 }

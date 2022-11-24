@@ -53,7 +53,7 @@ export default function Main() {
               >
                 <div  className="">Find out more</div>
               </button>
-              <Link href="/cafe">
+              <Link href="/raves">
 
                 <div
                   className="inline-flex cursor-pointer items-center px-5 py-3 mt-2 font-medium text-gray-00 transition duration-500 ease-in-out transform bg-transparent border border-gray-700 border-2 ml-3 rounded-lg bg-white-400"
@@ -157,14 +157,14 @@ export default function Main() {
               So, what gold have you found recently?
             </h1>
             <button className="bg-gray-800 m-auto p-4 rounded text-white mt-12 mb-8  text-2xl Avenir font-semibold">
-              <Link href="/cafe">Start sharing here</Link>
+              <Link href="/raves">Start sharing here</Link>
             </button>
             <h1 className="text-center mt-12 mx-auto mb-8 text-2xl Avenir font-semibold text-gray-600">
 
               And, checkout the
 
               <div className="">
-                <Link href="/cafe">
+                <Link href="/raves">
                 <div
                 className="cursor-pointer sm:m-2 md:m-auto lg:m-auto p-auto text-center  inline-flex items-center px-3 lg:px-5 md:px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform border rounded-lg bg-gray-800"
               >
